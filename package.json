@@ -1,0 +1,42 @@
+{
+  "name": "@clickup/rest-client",
+  "description": "A syntax sugar tool around Node fetch() API, tailored to work with TypeScript and response validators",
+  "version": "2.10.292",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint . --ext .ts --cache --cache-location dist/.eslintcache",
+    "test": "jest",
+    "docs": "rm -rf docs && typedoc --plugin typedoc-plugin-markdown --plugin typedoc-plugin-merge-modules && sed -i '' -E 's#packages/[^/]+/##g' $(find docs -type f -name '*.md')",
+    "clean": "rm -rf dist node_modules yarn.lock package-lock.json",
+    "copy-package-to-public-dir": "copy-package-to-public-dir.sh",
+    "deploy": "npm run build && npm test && npm publish --access=public"
+  },
+  "dependencies": {
+    "abort-controller": "^3.0.0",
+    "delay": "^4.4.1",
+    "fast-typescript-memoize": "^1.0.2",
+    "ipaddr.js": "^1.9.1",
+    "lodash": "^4.17.21",
+    "node-fetch": "^2.6.11",
+    "oauth-1.0a": "^2.2.6"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "@types/lodash": "^4.14.175",
+    "@types/node-fetch": "^2.6.4",
+    "superstruct": "^0.15.3",
+    "ts-jest": "^29.1.1",
+    "typedoc": "^0.25.2",
+    "typedoc-plugin-markdown": "^3.16.0",
+    "typedoc-plugin-merge-modules": "^5.1.0",
+    "typescript": "^5.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/clickup/rest-client"
+  }
+}
