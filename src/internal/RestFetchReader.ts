@@ -2,6 +2,7 @@ import AbortControllerPolyfilled from "abort-controller";
 import { Memoize } from "fast-typescript-memoize";
 import type { RequestInit } from "node-fetch";
 import fetch, { Headers, Request } from "node-fetch";
+import inferResBodyEncoding from "./inferResBodyEncoding";
 
 export interface RestFetchReaderOptions {
   timeoutMs?: number;
@@ -90,7 +91,7 @@ export default class RestFetchReader {
 
         this._textFetched += value;
       }
-    } catch (e) {
+    } catch (e: unknown) {
       await generator.return();
       throw e;
     }
@@ -140,15 +141,11 @@ export default class RestFetchReader {
       this._status = res.status;
       this._headers = res.headers;
 
-      // An opinionated choice is made here to always decode the response stream
-      // as UTF-8. This is because JSON is by definition a UTF-8 stream. In the
-      // future, when we need binary streams, we can tweak it by introducing
-      // some intermediate layer and doing some refactoring, but for now it's an
-      // overkill. See also
-      // https://nodejs.org/api/stream.html#readablesetencodingencoding on how
-      // Node streams handle decoding when the returned chunks cross the
-      // boundaries of multi-byte characters.
-      res.body.setEncoding("utf-8");
+      // See https://nodejs.org/api/stream.html#readablesetencodingencoding on
+      // how Node streams and setEncoding() handle decoding when the returned
+      // chunks cross the boundaries of multi-byte characters (TL;DR: it works
+      // fine, that's why we work with string and not Buffer here).
+      res.body.setEncoding(inferResBodyEncoding(res));
 
       await this._options.heartbeat?.();
       for await (const chunk of res.body) {
@@ -157,7 +154,7 @@ export default class RestFetchReader {
         yield chunk as string;
         onAfterRead?.(this);
       }
-    } catch (e) {
+    } catch (e: unknown) {
       if (controller.signal.aborted && onTimeout) {
         onTimeout(this, e);
       } else {

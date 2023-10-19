@@ -5,6 +5,11 @@ import type RestResponse from "./RestResponse";
  * Once created, RestStream must be iterated in full, otherwise the connection
  * will remain dangling. Also, this class is where we hide the details of the
  * actual stream reading using AsyncGenerator bridge abstraction.
+ *
+ * RestStream can also read binary data depending on the Content-Type response
+ * header and/or the charset provided there. The binary data is still returned
+ * as a string, one string character per each byte. To convert it to a Buffer,
+ * use something like `Buffer.from(responseText, "binary")`.
  */
 export default class RestStream {
   private _generator?: AsyncGenerator<string, void>;
@@ -41,7 +46,7 @@ export default class RestStream {
   /**
    * Closes the connection.
    */
-  async close() {
+  async close(): Promise<void> {
     // First, try to interrupt the active iteration, if any.
     await this[Symbol.asyncIterator]().return();
     // It is possible that this.[Symbol.asyncIterator] has never been iterated
@@ -63,7 +68,7 @@ export default class RestStream {
    * remain open.
    */
   @Memoize()
-  async *[Symbol.asyncIterator]() {
+  async *[Symbol.asyncIterator](): AsyncGenerator<string, void> {
     const generator = this._generator;
     if (!generator) {
       return;

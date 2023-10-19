@@ -1,5 +1,7 @@
 import delay from "delay";
+import range from "lodash/range";
 import {
+  BINARY_BUF,
   consumeIterable,
   createFetchReader,
   server,
@@ -131,6 +133,18 @@ test("timeout_after_reader_waited_for_too_long", async () => {
   await delay(500);
   await expect(async () => consumeIterable(reader, 10)).rejects.toThrow(
     TimeoutError
+  );
+  await serverAssertConnectionsCount(0);
+});
+
+test("read_binary_data", async () => {
+  const reader = createFetchReader(`${ORIGIN}/binary`, { timeoutMs: 2000 });
+  await reader.preload(42);
+  const preload = reader.textFetched;
+  expect(reader.textIsPartial).toBeTruthy();
+  const data = await consumeIterable(reader, 10);
+  expect(Buffer.from(preload + data, "binary")).toEqual(
+    Buffer.concat(range(10).map(() => BINARY_BUF))
   );
   await serverAssertConnectionsCount(0);
 });

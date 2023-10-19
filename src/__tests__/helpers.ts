@@ -1,6 +1,7 @@
 import http from "http";
 import type { Readable } from "stream";
 import delay from "delay";
+import range from "lodash/range";
 import { Headers } from "node-fetch";
 import { DEFAULT_OPTIONS, RestRequest, RestResponse, RestStream } from "..";
 import type { RestFetchReaderOptions } from "../internal/RestFetchReader";
@@ -8,6 +9,9 @@ import RestFetchReader from "../internal/RestFetchReader";
 
 // Two European Euro symbols in UTF-8.
 export const UTF8_BUF = Buffer.from([0xe2, 0x82, 0xac, 0xe2, 0x82, 0xac]);
+
+// Binary data, all possible bytes.
+export const BINARY_BUF = Buffer.from(range(256));
 
 // eslint-disable-next-line @typescript-eslint/no-misused-promises
 export const server = http.createServer(async (req, res) => {
@@ -61,6 +65,18 @@ export const server = http.createServer(async (req, res) => {
     for (const byte of UTF8_BUF) {
       await write(res, Buffer.from([byte]));
       await delay(500);
+    }
+
+    return res.end();
+  }
+
+  // Returns a binary response.
+  if (req.url === "/binary") {
+    res.setHeader("Content-Type", "application/octet-stream");
+    res.writeHead(200);
+    for (const _ in range(10)) {
+      await write(res, BINARY_BUF);
+      await delay(50);
     }
 
     return res.end();

@@ -178,7 +178,7 @@ export default class RestRequest<TAssertShape = any> {
               });
 
               return res;
-            } catch (e) {
+            } catch (e: unknown) {
               await reader?.close();
               throw e;
             }
@@ -188,7 +188,7 @@ export default class RestRequest<TAssertShape = any> {
         // The only place where we return the response. Otherwise we retry or
         // throw an exception.
         return new RestStream(res, reader!);
-      } catch (error) {
+      } catch (error: unknown) {
         this._logResponse({
           attempt,
           req: this,

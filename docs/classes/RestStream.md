@@ -6,6 +6,11 @@ Once created, RestStream must be iterated in full, otherwise the connection
 will remain dangling. Also, this class is where we hide the details of the
 actual stream reading using AsyncGenerator bridge abstraction.
 
+RestStream can also read binary data depending on the Content-Type response
+header and/or the charset provided there. The binary data is still returned
+as a string, one string character per each byte. To convert it to a Buffer,
+use something like `Buffer.from(responseText, "binary")`.
+
 ## Constructors
 
 ### constructor
@@ -22,7 +27,7 @@ actual stream reading using AsyncGenerator bridge abstraction.
 
 #### Defined in
 
-[src/RestStream.ts:12](https://github.com/clickup/rest-client/blob/master/src/RestStream.ts#L12)
+[src/RestStream.ts:17](https://github.com/clickup/rest-client/blob/master/src/RestStream.ts#L17)
 
 ## Properties
 
@@ -32,7 +37,7 @@ actual stream reading using AsyncGenerator bridge abstraction.
 
 #### Defined in
 
-[src/RestStream.ts:13](https://github.com/clickup/rest-client/blob/master/src/RestStream.ts#L13)
+[src/RestStream.ts:18](https://github.com/clickup/rest-client/blob/master/src/RestStream.ts#L18)
 
 ## Methods
 
@@ -55,7 +60,7 @@ done in all cases, so safe to be used to e.g. receive a trimmed response.
 
 #### Defined in
 
-[src/RestStream.ts:25](https://github.com/clickup/rest-client/blob/master/src/RestStream.ts#L25)
+[src/RestStream.ts:30](https://github.com/clickup/rest-client/blob/master/src/RestStream.ts#L30)
 
 ___
 
@@ -71,7 +76,7 @@ Closes the connection.
 
 #### Defined in
 
-[src/RestStream.ts:44](https://github.com/clickup/rest-client/blob/master/src/RestStream.ts#L44)
+[src/RestStream.ts:49](https://github.com/clickup/rest-client/blob/master/src/RestStream.ts#L49)
 
 ___
 
@@ -89,4 +94,4 @@ remain open.
 
 #### Defined in
 
-[src/RestStream.ts:66](https://github.com/clickup/rest-client/blob/master/src/RestStream.ts#L66)
+[src/RestStream.ts:71](https://github.com/clickup/rest-client/blob/master/src/RestStream.ts#L71)

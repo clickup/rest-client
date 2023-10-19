@@ -111,6 +111,10 @@ module.exports = (projectRoot) => ({
     eqeqeq: ["error"],
     "object-shorthand": ["error", "always"],
     "@typescript-eslint/unbound-method": ["error"],
+    "@typescript-eslint/no-implicit-any-catch": [
+      "error",
+      { allowExplicitAny: true },
+    ],
     "typescript-enum/no-const-enum": ["error"], // not supported in SWC
 
     "@typescript-eslint/naming-convention": [
@@ -145,7 +149,7 @@ module.exports = (projectRoot) => ({
         // ATTENTION: the rules here are not simple, mainly because of this:
         // https://github.com/typescript-eslint/typescript-eslint/issues/6133
         //
-        // Besides that, we also wand contradictory things, like:
+        // Besides that, we also want contradictory things, like:
         //
         // 1. Having constructor close to fields definition (because people
         //    often define fields in the constructor arguments), although it
