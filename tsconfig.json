@@ -1,7 +1,5 @@
 {
-  "include": [
-    "src/**/*"
-  ],
+  "include": ["src/**/*"],
   "compilerOptions": {
     "allowJs": true,
     "declaration": true,
@@ -11,9 +9,7 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "incremental": true,
-    "lib": [
-      "es2019"
-    ],
+    "lib": ["es2019"],
     "module": "commonjs",
     "moduleResolution": "node",
     "noEmitOnError": true,
@@ -31,9 +27,6 @@
     "strict": true,
     "target": "es2019",
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
-    "types": [
-      "node",
-      "jest"
-    ],
+    "types": ["node", "jest"]
   }
 }
