@@ -1,3 +1,4 @@
+import type { Agent as HttpAgent } from "http";
 import AbortControllerPolyfilled from "abort-controller";
 import { Memoize } from "fast-typescript-memoize";
 import type { RequestInit } from "node-fetch";
@@ -32,7 +33,7 @@ export default class RestFetchReader {
 
   constructor(
     private _url: string,
-    private _req: RequestInit,
+    private _reqInit: RequestInit,
     private _options: RestFetchReaderOptions
   ) {}
 
@@ -41,6 +42,20 @@ export default class RestFetchReader {
    */
   get charsRead() {
     return this._charsRead;
+  }
+
+  /**
+   * Returns the Agent instance used for this request. It's implied that
+   * RestRequest#agent always points to a http.Agent object.
+   */
+  get agent() {
+    return (
+      this._reqInit.agent &&
+      typeof this._reqInit.agent === "object" &&
+      "sockets" in this._reqInit.agent
+        ? this._reqInit.agent
+        : null
+    ) as HttpAgent | null;
   }
 
   /**
@@ -134,7 +149,7 @@ export default class RestFetchReader {
       const res = await fetch(
         this._url,
         new Request(this._url, {
-          ...this._req,
+          ...this._reqInit,
           signal: controller.signal as any,
         })
       );

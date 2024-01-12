@@ -37,6 +37,7 @@ export interface Middleware {
  */
 interface AgentOptions {
   keepAlive: boolean;
+  timeout?: number;
   maxSockets?: number;
   rejectUnauthorized?: boolean;
   family?: 4 | 6 | 0;
@@ -101,11 +102,9 @@ export default interface RestOptions {
   agents: Agents;
   /** Sets Keep-Alive parameters (persistent connections). */
   keepAlive: {
-    /** A hint to the server, how much time to keep the connection alive. Not
-     * all the servers respect it though (e.g. nginx and express do not). */
-    timeout: number;
-    /** How many requests are allowed to be processed in one connection. */
-    max: number;
+    /** How much time to keep an idle connection alive in the pool. If 0, closes
+     * the connection immediately after the response. */
+    timeoutMs: number;
     /** How many sockets at maximum will be kept open. */
     maxSockets?: number;
   };
@@ -129,8 +128,7 @@ export default interface RestOptions {
    *   performed;
    * * "THROW" - the request resulted in error. Additional tests will be
    *   performed to determine is the error is retriable, is OAuth token good,
-   *   and etc.
-   */
+   *   and etc. */
   isSuccessResponse: (res: RestResponse) => "SUCCESS" | "THROW" | "BEST_EFFORT";
   /** Decides whether the response is a rate-limit error or not. Returning
    * non-zero value is treated as retry delay (if retries are set up). In case
@@ -176,7 +174,7 @@ export const DEFAULT_OPTIONS: RestOptions = {
   allowInternalIPs: false,
   isDebug: false,
   agents: new Agents(),
-  keepAlive: { timeout: 10, max: 100 },
+  keepAlive: { timeoutMs: 10000 },
   family: 4, // we don't want to hit ~5s DNS timeout on a missing IPv6 by default
   timeoutMs: 4 * 60 * 1000,
   logger: () => {},

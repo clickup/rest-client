@@ -9,7 +9,7 @@
 export default async function* depaginate<TItem, TCursor = string>(
   readFunc: (
     cursor: TCursor | undefined
-  ) => Promise<[TItem[], TCursor | null | undefined]>
+  ) => Promise<readonly [TItem[], TCursor | null | undefined]>
 ): AsyncGenerator<TItem, void, undefined> {
   let prevCursor: TCursor | null | undefined = undefined;
   let cursor: TCursor | null | undefined = undefined;

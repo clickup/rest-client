@@ -53,7 +53,7 @@ On each call, the inner function needs to return an array with two elements:
 
 | Name | Type |
 | :------ | :------ |
-| `readFunc` | (`cursor`: `undefined` \| `TCursor`) => `Promise`<[`TItem`[], `undefined` \| ``null`` \| `TCursor`]\> |
+| `readFunc` | (`cursor`: `undefined` \| `TCursor`) => `Promise`<readonly [`TItem`[], `undefined` \| ``null`` \| `TCursor`]\> |
 
 #### Returns
 
