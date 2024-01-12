@@ -224,7 +224,7 @@ module.exports = (projectRoot) => ({
 
     "padding-line-between-statements": "off",
     "@typescript-eslint/padding-line-between-statements": [
-      "warn",
+      "error",
       // Force empty lines.
       {
         blankLine: "always",
@@ -294,6 +294,23 @@ module.exports = (projectRoot) => ({
         name: "location",
         message:
           "We use React Router and History to control the location of our web or desktop app. Prefer `useLocation` in React components and `historyFromContext` in Redux Saga.",
+      },
+    ],
+
+    "no-restricted-syntax": [
+      "error",
+      {
+        selector: (() => {
+          const RE_BAD = "/([a-z0-9_ ]|^)E[Ii][Dd]|(^|[-_: ])eid/";
+          return [
+            `Identifier[name=${RE_BAD}]`,
+            `Literal[value=${RE_BAD}]`,
+            `TemplateElement[value.raw=${RE_BAD}]`,
+            `TSInterfaceDeclaration[id.name=${RE_BAD}]`,
+          ].join(",");
+        })(),
+        message:
+          'Do not use "eid" or "EID" as a part of a name/field/type. Instead, prefer externalID or external_id.',
       },
     ],
 
