@@ -158,9 +158,9 @@ export default class RestRequest<TAssertShape = any> {
                 reader = req._createFetchReader(fetchReq);
                 await reader.preload(preloadChars);
               } finally {
-                res =
-                  req._createRestResponse(reader) ??
-                  new RestResponse(req, 0, new Headers(), "", false);
+                res = reader
+                  ? req._createRestResponse(reader)
+                  : new RestResponse(req, null, 0, new Headers(), "", false);
               }
 
               throwIfErrorResponse(req.options, res);
@@ -293,16 +293,9 @@ export default class RestRequest<TAssertShape = any> {
       redirectMode = "error";
     }
 
-    const hasKeepAlive = this.options.keepAlive.timeout > 0;
+    const hasKeepAlive = this.options.keepAlive.timeoutMs > 0;
     if (hasKeepAlive) {
       headers.append("connection", "Keep-Alive");
-      headers.append(
-        "keep-alive",
-        "timeout=" +
-          this.options.keepAlive.timeout +
-          ", max=" +
-          this.options.keepAlive.max
-      );
     }
 
     // Use lazily created/cached per-RestClient Agent instance to utilize HTTP
@@ -313,7 +306,8 @@ export default class RestRequest<TAssertShape = any> {
         : this.options.agents.http.bind(this.options.agents)
     )({
       keepAlive: hasKeepAlive,
-      maxSockets: this.options.keepAlive?.maxSockets,
+      timeout: hasKeepAlive ? this.options.keepAlive.timeoutMs : undefined,
+      maxSockets: this.options.keepAlive.maxSockets,
       rejectUnauthorized: this.options.allowInternalIPs ? false : undefined,
       family: this.options.family,
     });
@@ -360,16 +354,15 @@ export default class RestRequest<TAssertShape = any> {
    * Creates a RestResponse from a RestFetchReader. Assumes that
    * RestFetchReader.preload() has already been called.
    */
-  private _createRestResponse(reader: RestFetchReader | null) {
-    return reader
-      ? new RestResponse(
-          this,
-          reader.status,
-          reader.headers,
-          reader.textFetched,
-          reader.textIsPartial
-        )
-      : null;
+  private _createRestResponse(reader: RestFetchReader) {
+    return new RestResponse(
+      this,
+      reader.agent,
+      reader.status,
+      reader.headers,
+      reader.textFetched,
+      reader.textIsPartial
+    );
   }
 
   /**

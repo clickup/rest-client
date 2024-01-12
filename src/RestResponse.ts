@@ -1,3 +1,4 @@
+import type { Agent as HttpAgent } from "http";
 import { Memoize } from "fast-typescript-memoize";
 import type { Headers } from "node-fetch";
 import type RestRequest from "./RestRequest";
@@ -16,6 +17,7 @@ import type RestRequest from "./RestRequest";
 export default class RestResponse {
   constructor(
     public readonly req: RestRequest,
+    public readonly agent: HttpAgent | null,
     public readonly status: number,
     public readonly headers: Headers,
     public readonly text: string,

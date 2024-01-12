@@ -1,4 +1,4 @@
-# RestClient: a syntax sugar tool around Node fetch() API, tailored to work with typescript-is or superstruct validators
+# rest-client: a syntax sugar tool around Node fetch() API, tailored to work with typescript-is or superstruct validators
 
 See also [Full API documentation](https://github.com/clickup/rest-client/blob/master/docs/modules.md).
 

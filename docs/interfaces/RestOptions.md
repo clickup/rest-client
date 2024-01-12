@@ -16,7 +16,7 @@ web app, and we don't want to retry them.
 
 #### Defined in
 
-[src/RestOptions.ts:69](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L69)
+[src/RestOptions.ts:70](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L70)
 
 ___
 
@@ -28,7 +28,7 @@ How much time to wait by default on the 1st retry attempt.
 
 #### Defined in
 
-[src/RestOptions.ts:71](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L71)
+[src/RestOptions.ts:72](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L72)
 
 ___
 
@@ -40,7 +40,7 @@ How much to increase the retry delay on each retry.
 
 #### Defined in
 
-[src/RestOptions.ts:73](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L73)
+[src/RestOptions.ts:74](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L74)
 
 ___
 
@@ -53,7 +53,7 @@ Use this fraction (random) of the current retry delay to jitter both ways
 
 #### Defined in
 
-[src/RestOptions.ts:76](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L76)
+[src/RestOptions.ts:77](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L77)
 
 ___
 
@@ -65,7 +65,7 @@ Maximum delay between each retry.
 
 #### Defined in
 
-[src/RestOptions.ts:78](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L78)
+[src/RestOptions.ts:79](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L79)
 
 ___
 
@@ -84,7 +84,7 @@ A logic which runs on different IO stages (delay and heartbeats).
 
 #### Defined in
 
-[src/RestOptions.ts:80](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L80)
+[src/RestOptions.ts:81](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L81)
 
 ___
 
@@ -96,7 +96,7 @@ Allows to limit huge requests and throw instead.
 
 #### Defined in
 
-[src/RestOptions.ts:91](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L91)
+[src/RestOptions.ts:92](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L92)
 
 ___
 
@@ -109,7 +109,7 @@ response or not.
 
 #### Defined in
 
-[src/RestOptions.ts:94](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L94)
+[src/RestOptions.ts:95](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L95)
 
 ___
 
@@ -122,7 +122,7 @@ addresses are allowed.
 
 #### Defined in
 
-[src/RestOptions.ts:97](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L97)
+[src/RestOptions.ts:98](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L98)
 
 ___
 
@@ -134,7 +134,7 @@ If true, logs request-response pairs to console.
 
 #### Defined in
 
-[src/RestOptions.ts:99](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L99)
+[src/RestOptions.ts:100](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L100)
 
 ___
 
@@ -148,13 +148,12 @@ Sets Keep-Alive parameters (persistent connections).
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `timeout` | `number` | A hint to the server, how much time to keep the connection alive. Not all the servers respect it though (e.g. nginx and express do not). |
-| `max` | `number` | How many requests are allowed to be processed in one connection. |
+| `timeoutMs` | `number` | How much time to keep an idle connection alive in the pool. If 0, closes the connection immediately after the response. |
 | `maxSockets?` | `number` | How many sockets at maximum will be kept open. |
 
 #### Defined in
 
-[src/RestOptions.ts:103](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L103)
+[src/RestOptions.ts:104](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L104)
 
 ___
 
@@ -166,7 +165,7 @@ When resolving DNS, use IPv4, IPv6 or both (see dns.lookup() docs).
 
 #### Defined in
 
-[src/RestOptions.ts:113](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L113)
+[src/RestOptions.ts:112](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L112)
 
 ___
 
@@ -178,7 +177,7 @@ Max timeout to wait for a response.
 
 #### Defined in
 
-[src/RestOptions.ts:115](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L115)
+[src/RestOptions.ts:114](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L114)
 
 ___
 
@@ -205,7 +204,7 @@ delay events logging.
 
 #### Defined in
 
-[src/RestOptions.ts:118](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L118)
+[src/RestOptions.ts:117](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L117)
 
 ___
 
@@ -217,7 +216,7 @@ Middlewares to wrap requests. May alter both request and response.
 
 #### Defined in
 
-[src/RestOptions.ts:120](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L120)
+[src/RestOptions.ts:119](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L119)
 
 ___
 
@@ -254,7 +253,7 @@ remote API is that weird. Return values:
 
 #### Defined in
 
-[src/RestOptions.ts:134](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L134)
+[src/RestOptions.ts:132](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L132)
 
 ___
 
@@ -288,7 +287,7 @@ contradictory information; then isRateLimitError wins.
 
 #### Defined in
 
-[src/RestOptions.ts:144](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L144)
+[src/RestOptions.ts:142](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L142)
 
 ___
 
@@ -315,7 +314,7 @@ not, the response ought to be either success or some other error.
 
 #### Defined in
 
-[src/RestOptions.ts:149](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L149)
+[src/RestOptions.ts:147](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L147)
 
 ___
 
@@ -348,4 +347,4 @@ retry will happen in not less than this number of milliseconds.
 
 #### Defined in
 
-[src/RestOptions.ts:157](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L157)
+[src/RestOptions.ts:155](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L155)

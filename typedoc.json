@@ -1,6 +1,11 @@
 {
   "entryPoints": ["src"],
-  "exclude": ["src/internal/**", "src/__tests__/**", "**/node-fetch/**", "**/node_modules/**"],
+  "exclude": [
+    "**/internal/**",
+    "**/__tests__/**",
+    "**/node_modules/**",
+    "**/node-fetch/**"
+  ],
   "entryPointStrategy": "expand",
   "mergeModulesMergeMode": "project",
   "sort": ["source-order"],

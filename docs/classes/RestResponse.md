@@ -16,13 +16,14 @@ body and make it a part of RestResponse abstraction.
 
 ### constructor
 
-• **new RestResponse**(`req`, `status`, `headers`, `text`, `textIsPartial`)
+• **new RestResponse**(`req`, `agent`, `status`, `headers`, `text`, `textIsPartial`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `req` | [`RestRequest`](RestRequest.md)<`any`\> |
+| `agent` | ``null`` \| `Agent` |
 | `status` | `number` |
 | `headers` | `Headers` |
 | `text` | `string` |
@@ -30,7 +31,7 @@ body and make it a part of RestResponse abstraction.
 
 #### Defined in
 
-[src/RestResponse.ts:17](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L17)
+[src/RestResponse.ts:18](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L18)
 
 ## Properties
 
@@ -40,7 +41,17 @@ body and make it a part of RestResponse abstraction.
 
 #### Defined in
 
-[src/RestResponse.ts:18](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L18)
+[src/RestResponse.ts:19](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L19)
+
+___
+
+### agent
+
+• `Readonly` **agent**: ``null`` \| `Agent`
+
+#### Defined in
+
+[src/RestResponse.ts:20](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L20)
 
 ___
 
@@ -50,7 +61,7 @@ ___
 
 #### Defined in
 
-[src/RestResponse.ts:19](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L19)
+[src/RestResponse.ts:21](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L21)
 
 ___
 
@@ -60,7 +71,7 @@ ___
 
 #### Defined in
 
-[src/RestResponse.ts:20](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L20)
+[src/RestResponse.ts:22](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L22)
 
 ___
 
@@ -70,7 +81,7 @@ ___
 
 #### Defined in
 
-[src/RestResponse.ts:21](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L21)
+[src/RestResponse.ts:23](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L23)
 
 ___
 
@@ -80,7 +91,7 @@ ___
 
 #### Defined in
 
-[src/RestResponse.ts:22](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L22)
+[src/RestResponse.ts:24](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L24)
 
 ## Accessors
 
@@ -107,4 +118,4 @@ RestRequest.json() instead.
 
 #### Defined in
 
-[src/RestResponse.ts:40](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L40)
+[src/RestResponse.ts:42](https://github.com/clickup/rest-client/blob/master/src/RestResponse.ts#L42)

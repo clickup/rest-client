@@ -13,14 +13,23 @@ import RestResponse from "../RestResponse";
 const REQUEST = new RestClient().get("https://example.com");
 const SUCCESS_RESPONSE = new RestResponse(
   REQUEST,
+  null,
   200,
   new Headers(),
   "",
   false
 );
-const ERROR_RESPONSE = new RestResponse(REQUEST, 500, new Headers(), "", false);
+const ERROR_RESPONSE = new RestResponse(
+  REQUEST,
+  null,
+  500,
+  new Headers(),
+  "",
+  false
+);
 const NOT_FOUND_RESPONSE = new RestResponse(
   REQUEST,
+  null,
   404,
   new Headers(),
   "",
@@ -28,6 +37,7 @@ const NOT_FOUND_RESPONSE = new RestResponse(
 );
 const TOO_MANY_REQUESTS_RESPONSE = new RestResponse(
   REQUEST,
+  null,
   429,
   new Headers(),
   "",

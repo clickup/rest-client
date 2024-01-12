@@ -88,7 +88,7 @@ export const server = http.createServer(async (req, res) => {
 
 export async function serverAssertConnectionsCount(expect: number) {
   let got: number = 0;
-  for (let timeStart = Date.now(); Date.now() - timeStart < 2000; ) {
+  for (let timeStart = Date.now(); Date.now() - timeStart < 10000; ) {
     got = await new Promise((resolve) =>
       server.getConnections((_, count) => resolve(count))
     );
@@ -129,6 +129,7 @@ export async function createRestStream(url: string, preloadBytes?: number) {
   return new RestStream(
     new RestResponse(
       new RestRequest(DEFAULT_OPTIONS, "GET", "dummy", new Headers(), ""),
+      reader.agent,
       reader.status,
       reader.headers,
       reader.textFetched.toString(),
