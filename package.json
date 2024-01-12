@@ -1,7 +1,7 @@
 {
   "name": "@clickup/rest-client",
   "description": "A syntax sugar tool around Node fetch() API, tailored to work with TypeScript and response validators",
-  "version": "2.10.293",
+  "version": "2.10.294",
   "license": "MIT",
   "keywords": [
     "rest-client",
