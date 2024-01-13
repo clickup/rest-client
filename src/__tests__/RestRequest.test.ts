@@ -17,7 +17,7 @@ const SUCCESS_RESPONSE = new RestResponse(
   200,
   new Headers(),
   "",
-  false
+  false,
 );
 const ERROR_RESPONSE = new RestResponse(
   REQUEST,
@@ -25,7 +25,7 @@ const ERROR_RESPONSE = new RestResponse(
   500,
   new Headers(),
   "",
-  false
+  false,
 );
 const NOT_FOUND_RESPONSE = new RestResponse(
   REQUEST,
@@ -33,7 +33,7 @@ const NOT_FOUND_RESPONSE = new RestResponse(
   404,
   new Headers(),
   "",
-  false
+  false,
 );
 const TOO_MANY_REQUESTS_RESPONSE = new RestResponse(
   REQUEST,
@@ -41,36 +41,36 @@ const TOO_MANY_REQUESTS_RESPONSE = new RestResponse(
   429,
   new Headers(),
   "",
-  false
+  false,
 );
 
 test("isSuccessResponse", () => {
   expect(
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isSuccessResponse: () => "SUCCESS" },
-      ERROR_RESPONSE
-    )
+      ERROR_RESPONSE,
+    ),
   ).toBeUndefined();
 
   expect(() =>
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isSuccessResponse: () => "BEST_EFFORT" },
-      NOT_FOUND_RESPONSE
-    )
+      NOT_FOUND_RESPONSE,
+    ),
   ).toThrow(/404/);
 
   expect(
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isSuccessResponse: () => "BEST_EFFORT" },
-      SUCCESS_RESPONSE
-    )
+      SUCCESS_RESPONSE,
+    ),
   ).toBeUndefined();
 
   expect(() =>
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isSuccessResponse: () => "THROW" },
-      SUCCESS_RESPONSE
-    )
+      SUCCESS_RESPONSE,
+    ),
   ).toThrow(/isSuccessResponse/);
 });
 
@@ -78,29 +78,29 @@ test("isRateLimitError", () => {
   expect(() =>
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isRateLimitError: () => "RATE_LIMIT" },
-      SUCCESS_RESPONSE
-    )
+      SUCCESS_RESPONSE,
+    ),
   ).toThrow(RestRateLimitError);
 
   expect(
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isRateLimitError: () => "BEST_EFFORT" },
-      SUCCESS_RESPONSE
-    )
+      SUCCESS_RESPONSE,
+    ),
   ).toBeUndefined();
 
   expect(() =>
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isRateLimitError: () => "BEST_EFFORT" },
-      TOO_MANY_REQUESTS_RESPONSE
-    )
+      TOO_MANY_REQUESTS_RESPONSE,
+    ),
   ).toThrow(RestRateLimitError);
 
   expect(
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isRateLimitError: () => "SOMETHING_ELSE" },
-      SUCCESS_RESPONSE
-    )
+      SUCCESS_RESPONSE,
+    ),
   ).toBeUndefined();
 });
 
@@ -108,15 +108,15 @@ test("isTokenInvalidError", () => {
   expect(() =>
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isTokenInvalidError: () => true },
-      SUCCESS_RESPONSE
-    )
+      SUCCESS_RESPONSE,
+    ),
   ).toThrow(RestTokenInvalidError);
 
   expect(
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isTokenInvalidError: () => false },
-      SUCCESS_RESPONSE
-    )
+      SUCCESS_RESPONSE,
+    ),
   ).toBeUndefined();
 });
 
@@ -124,36 +124,36 @@ test("isRetriableError", () => {
   expect(() =>
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isRetriableError: () => "RETRY" },
-      SUCCESS_RESPONSE
-    )
+      SUCCESS_RESPONSE,
+    ),
   ).toThrow(RestResponseError);
 
   expect(
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isRetriableError: () => "BEST_EFFORT" },
-      SUCCESS_RESPONSE
-    )
+      SUCCESS_RESPONSE,
+    ),
   ).toBeUndefined();
 
   expect(() =>
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isRetriableError: () => "BEST_EFFORT" },
-      NOT_FOUND_RESPONSE
-    )
+      NOT_FOUND_RESPONSE,
+    ),
   ).toThrow(RestResponseError);
 
   expect(
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isRateLimitError: () => "SOMETHING_ELSE" },
-      SUCCESS_RESPONSE
-    )
+      SUCCESS_RESPONSE,
+    ),
   ).toBeUndefined();
 
   expect(() =>
     throwIfErrorResponse(
       { ...DEFAULT_OPTIONS, isRetriableError: () => "NEVER_RETRY" },
-      NOT_FOUND_RESPONSE
-    )
+      NOT_FOUND_RESPONSE,
+    ),
   ).toThrow(RestResponseError);
 });
 
@@ -163,8 +163,8 @@ test("calcRetryDelay", () => {
       new RestRateLimitError("", 42, SUCCESS_RESPONSE),
       DEFAULT_OPTIONS,
       SUCCESS_RESPONSE,
-      0
-    )
+      0,
+    ),
   ).toEqual(42);
 
   expect(
@@ -172,8 +172,8 @@ test("calcRetryDelay", () => {
       new RestTokenInvalidError("", ERROR_RESPONSE),
       DEFAULT_OPTIONS,
       ERROR_RESPONSE,
-      0
-    )
+      0,
+    ),
   ).toEqual("no_retry");
 
   expect(
@@ -181,8 +181,8 @@ test("calcRetryDelay", () => {
       new RestTokenInvalidError("", ERROR_RESPONSE),
       { ...DEFAULT_OPTIONS, isRetriableError: () => "RETRY" },
       ERROR_RESPONSE,
-      42
-    )
+      42,
+    ),
   ).toEqual(42);
 
   expect(
@@ -190,8 +190,8 @@ test("calcRetryDelay", () => {
       new RestResponseError("", ERROR_RESPONSE),
       { ...DEFAULT_OPTIONS, isRetriableError: () => "BEST_EFFORT" },
       ERROR_RESPONSE,
-      42
-    )
+      42,
+    ),
   ).toEqual(42);
 
   expect(
@@ -199,8 +199,8 @@ test("calcRetryDelay", () => {
       new RestResponseError("", NOT_FOUND_RESPONSE),
       { ...DEFAULT_OPTIONS, isRetriableError: () => "BEST_EFFORT" },
       NOT_FOUND_RESPONSE,
-      42
-    )
+      42,
+    ),
   ).toEqual("no_retry");
 
   expect(
@@ -208,8 +208,8 @@ test("calcRetryDelay", () => {
       new RestRateLimitError("", 42, NOT_FOUND_RESPONSE),
       { ...DEFAULT_OPTIONS, isRetriableError: () => "BEST_EFFORT" },
       NOT_FOUND_RESPONSE,
-      0
-    )
+      0,
+    ),
   ).toEqual(42);
 
   expect(
@@ -221,8 +221,8 @@ test("calcRetryDelay", () => {
           error instanceof FetchError ? "NEVER_RETRY" : "RETRY",
       },
       NOT_FOUND_RESPONSE,
-      0
-    )
+      0,
+    ),
   ).toEqual("no_retry");
 
   expect(
@@ -230,8 +230,8 @@ test("calcRetryDelay", () => {
       new FetchError("test", "max-size"),
       { ...DEFAULT_OPTIONS, isRetriableError: () => "BEST_EFFORT" },
       NOT_FOUND_RESPONSE,
-      0
-    )
+      0,
+    ),
   ).toEqual("no_retry");
 });
 
@@ -243,8 +243,8 @@ test("when isRateLimitError=YES, isRetriableError=NO doesn't matter, and the req
         isRateLimitError: () => "RATE_LIMIT",
         isRetriableError: () => "NEVER_RETRY",
       },
-      SUCCESS_RESPONSE
-    )
+      SUCCESS_RESPONSE,
+    ),
   ).toThrow(RestRateLimitError);
 
   expect(
@@ -256,7 +256,7 @@ test("when isRateLimitError=YES, isRetriableError=NO doesn't matter, and the req
         isRetriableError: () => "NEVER_RETRY",
       },
       SUCCESS_RESPONSE,
-      0
-    )
+      0,
+    ),
   ).toEqual(42);
 });

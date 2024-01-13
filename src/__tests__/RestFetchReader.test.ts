@@ -15,7 +15,7 @@ let ORIGIN: string;
 beforeAll(async () => {
   ORIGIN = await new Promise((resolve) => {
     server.listen(0, () =>
-      resolve("http://127.0.0.1:" + (server.address() as any).port)
+      resolve("http://127.0.0.1:" + (server.address() as any).port),
     );
   });
 });
@@ -87,7 +87,7 @@ test("too_big_response", async () => {
   await reader.preload(42);
   await serverAssertConnectionsCount(1);
   await expect(async () => consumeIterable(reader, 10)).rejects.toThrow(
-    "too large"
+    "too large",
   );
   await serverAssertConnectionsCount(0);
 });
@@ -95,7 +95,7 @@ test("too_big_response", async () => {
 test("timeout_response_no_preload_long_read_delay", async () => {
   const reader = createFetchReader(`${ORIGIN}/slow`, { timeoutMs: 200 });
   await expect(async () => consumeIterable(reader, 500)).rejects.toThrow(
-    TimeoutError
+    TimeoutError,
   );
   await serverAssertConnectionsCount(0);
 });
@@ -103,7 +103,7 @@ test("timeout_response_no_preload_long_read_delay", async () => {
 test("timeout_response_no_preload_short_read_delay", async () => {
   const reader = createFetchReader(`${ORIGIN}/slow`, { timeoutMs: 200 });
   await expect(async () => consumeIterable(reader, 10)).rejects.toThrow(
-    TimeoutError
+    TimeoutError,
   );
   await serverAssertConnectionsCount(0);
 });
@@ -111,7 +111,7 @@ test("timeout_response_no_preload_short_read_delay", async () => {
 test("timeout_in_preload", async () => {
   const reader = createFetchReader(`${ORIGIN}/slow`, { timeoutMs: 200 });
   await expect(async () => reader.preload(10000000)).rejects.toThrow(
-    TimeoutError
+    TimeoutError,
   );
   await serverAssertConnectionsCount(0);
 });
@@ -121,7 +121,7 @@ test("timeout_in_stream_after_preload_succeeded", async () => {
   await reader.preload(42);
   await serverAssertConnectionsCount(1);
   await expect(async () => consumeIterable(reader, 10)).rejects.toThrow(
-    TimeoutError
+    TimeoutError,
   );
   await serverAssertConnectionsCount(0);
 });
@@ -132,7 +132,7 @@ test("timeout_after_reader_waited_for_too_long", async () => {
   await serverAssertConnectionsCount(1);
   await delay(500);
   await expect(async () => consumeIterable(reader, 10)).rejects.toThrow(
-    TimeoutError
+    TimeoutError,
   );
   await serverAssertConnectionsCount(0);
 });
@@ -144,7 +144,7 @@ test("read_binary_data", async () => {
   expect(reader.textIsPartial).toBeTruthy();
   const data = await consumeIterable(reader, 10);
   expect(Buffer.from(preload + data, "binary")).toEqual(
-    Buffer.concat(range(10).map(() => BINARY_BUF))
+    Buffer.concat(range(10).map(() => BINARY_BUF)),
   );
   await serverAssertConnectionsCount(0);
 });

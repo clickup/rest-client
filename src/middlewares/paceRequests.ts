@@ -9,7 +9,7 @@ const MIN_LOG_DELAY_MS = 10;
  * Pacer implementations.
  */
 export default function paceRequests(
-  pacer: Pacer | ((req: RestRequest) => Promise<Pacer | null>) | null
+  pacer: Pacer | ((req: RestRequest) => Promise<Pacer | null>) | null,
 ): Middleware {
   return async (req, next) => {
     if (typeof pacer === "function") {

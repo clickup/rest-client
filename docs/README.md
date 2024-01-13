@@ -4,6 +4,8 @@
 
 See also [Full API documentation](https://github.com/clickup/rest-client/blob/master/docs/modules.md).
 
+![CI run](https://github.com/clickup/rest-client/actions/workflows/ci.yml/badge.svg?branch=main)
+
 ## Examples
 
 In the example below we use

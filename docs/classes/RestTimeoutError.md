@@ -12,7 +12,7 @@
 
 ### constructor
 
-• **new RestTimeoutError**(`message`, `res`)
+• **new RestTimeoutError**(`message`, `res`): [`RestTimeoutError`](RestTimeoutError.md)
 
 #### Parameters
 
@@ -20,6 +20,10 @@
 | :------ | :------ |
 | `message` | `string` |
 | `res` | [`RestResponse`](RestResponse.md) |
+
+#### Returns
+
+[`RestTimeoutError`](RestTimeoutError.md)
 
 #### Inherited from
 

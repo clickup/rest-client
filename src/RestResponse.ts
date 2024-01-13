@@ -21,7 +21,7 @@ export default class RestResponse {
     public readonly status: number,
     public readonly headers: Headers,
     public readonly text: string,
-    public readonly textIsPartial: boolean
+    public readonly textIsPartial: boolean,
   ) {}
 
   /**

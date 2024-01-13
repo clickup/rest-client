@@ -16,7 +16,7 @@ const STATUS_TOO_MANY_REQUESTS = 429;
  */
 export default function throwIfErrorResponse(
   options: RestOptions,
-  res: RestResponse
+  res: RestResponse,
 ) {
   const isSuccessResponse = options.isSuccessResponse(res);
   if (isSuccessResponse === "SUCCESS") {
@@ -29,7 +29,7 @@ export default function throwIfErrorResponse(
       throw new RestRateLimitError(
         `isRateLimitError() returned ${rateLimitDelayMs}`,
         0,
-        res
+        res,
       );
     case "BEST_EFFORT":
       if (res.status === STATUS_TOO_MANY_REQUESTS) {
@@ -37,7 +37,7 @@ export default function throwIfErrorResponse(
         throw new RestRateLimitError(
           `Rate limited by HTTP status ${STATUS_TOO_MANY_REQUESTS}`,
           parseInt(retryAfterHeader) || 0,
-          res
+          res,
         );
       }
 
@@ -48,7 +48,7 @@ export default function throwIfErrorResponse(
       throw new RestRateLimitError(
         `isRateLimitError() returned retry delay ${rateLimitDelayMs} ms`,
         rateLimitDelayMs,
-        res
+        res,
       );
   }
 
@@ -63,7 +63,7 @@ export default function throwIfErrorResponse(
       throw new RestRetriableError(
         `isRetriableError() returned ${retryDelayMs}`,
         0,
-        res
+        res,
       );
     case "BEST_EFFORT":
     case "NEVER_RETRY":
@@ -72,14 +72,14 @@ export default function throwIfErrorResponse(
       throw new RestRetriableError(
         `"isRetriableError() returned retry delay ${retryDelayMs} ms`,
         retryDelayMs,
-        res
+        res,
       );
   }
 
   if (isSuccessResponse === "THROW") {
     throw new RestResponseError(
       `isSuccessResponse() returned ${isSuccessResponse}`,
-      res
+      res,
     );
   }
 

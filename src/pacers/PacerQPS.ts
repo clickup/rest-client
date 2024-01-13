@@ -73,7 +73,7 @@ export default class PacerQPS implements Pacer {
 
   constructor(
     private _options: PacerQPSOptions,
-    private _backend: PacerQPSBackend
+    private _backend: PacerQPSBackend,
   ) {}
 
   get name() {
@@ -107,7 +107,7 @@ export default class PacerQPS implements Pacer {
     // situation, when we don't know much about the entire fleet average delay
     // yet, or when this delay is too small to count on.
     const singleWorkerDelayStepMs = Math.round(
-      ((windowSec * 1000) / limit) * DELAY_AVG_TO_STEP_FACTOR
+      ((windowSec * 1000) / limit) * DELAY_AVG_TO_STEP_FACTOR,
     );
 
     // Considering that there are multiple workers running, and that the current
@@ -116,7 +116,7 @@ export default class PacerQPS implements Pacer {
     const multiWorkerDelayStepMs = Math.round(
       avg *
         DELAY_AVG_TO_STEP_FACTOR *
-        random(1 - DELAY_STEP_JITTER, 1 + DELAY_STEP_JITTER, true)
+        random(1 - DELAY_STEP_JITTER, 1 + DELAY_STEP_JITTER, true),
     );
 
     // If average fleet delay is not representative yet, we fallback to a

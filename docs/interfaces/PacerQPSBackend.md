@@ -18,7 +18,7 @@ Resource key which this backend is operating on.
 
 ### push
 
-▸ **push**(`props`): `Promise`<{ `count`: `number` ; `sum`: `number` ; `avg`: `number` ; `median`: `number`  }\>
+▸ **push**(`props`): `Promise`\<\{ `count`: `number` ; `sum`: `number` ; `avg`: `number` ; `median`: `number`  }\>
 
 Maintains the array of numbers somewhere in memory (time-value pairs),
 inserts a new time-value pair to the end of this list, and removes all the
@@ -37,7 +37,7 @@ array and some central tendency statistics about its values.
 
 #### Returns
 
-`Promise`<{ `count`: `number` ; `sum`: `number` ; `avg`: `number` ; `median`: `number`  }\>
+`Promise`\<\{ `count`: `number` ; `sum`: `number` ; `avg`: `number` ; `median`: `number`  }\>
 
 #### Defined in
 

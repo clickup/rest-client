@@ -13,7 +13,7 @@ export default function calcRetryDelay(
   error: any,
   options: RestOptions,
   res: RestResponse,
-  retryDelayMs: number
+  retryDelayMs: number,
 ): number | "no_retry" {
   if (
     error instanceof RestRateLimitError ||
@@ -22,7 +22,7 @@ export default function calcRetryDelay(
     // We've already made a decision to retry this error.
     return Math.min(
       options.retryDelayMaxMs,
-      Math.max(retryDelayMs, error.delayMs)
+      Math.max(retryDelayMs, error.delayMs),
     );
   }
 

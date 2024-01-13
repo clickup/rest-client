@@ -21,8 +21,8 @@ export default class RestResponseError extends RestError {
       `HTTP ${res.status}: ` +
         (message ? `${message}: ` : "") +
         prependNewlineIfMultiline(
-          inspectPossibleJSON(res.headers, res.text, RESPONSE_MAX_LEN_IN_ERROR)
-        )
+          inspectPossibleJSON(res.headers, res.text, RESPONSE_MAX_LEN_IN_ERROR),
+        ),
     );
     Object.defineProperty(this, "res", { value: res, enumerable: false }); // hidden from inspect()
     const url = new URL(res.req.url);
@@ -34,7 +34,7 @@ export default class RestResponseError extends RestError {
     this.requestBody = inspectPossibleJSON(
       res.headers,
       res.req.body,
-      RESPONSE_MAX_LEN_IN_ERROR
+      RESPONSE_MAX_LEN_IN_ERROR,
     );
     this.responseHeaders = [...res.headers]
       .map(([name, value]) => `${name}: ${value}`)

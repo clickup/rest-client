@@ -33,7 +33,7 @@
 
 ### depaginate
 
-▸ **depaginate**<`TItem`, `TCursor`\>(`readFunc`): `AsyncGenerator`<`TItem`, `void`, `undefined`\>
+▸ **depaginate**\<`TItem`, `TCursor`\>(`readFunc`): `AsyncGenerator`\<`TItem`, `void`, `undefined`\>
 
 Keeps calling a function with an updating cursor, and depaginates all the
 results until the cursor returned is null or undefined.
@@ -53,11 +53,11 @@ On each call, the inner function needs to return an array with two elements:
 
 | Name | Type |
 | :------ | :------ |
-| `readFunc` | (`cursor`: `undefined` \| `TCursor`) => `Promise`<readonly [`TItem`[], `undefined` \| ``null`` \| `TCursor`]\> |
+| `readFunc` | (`cursor`: `undefined` \| `TCursor`) => `Promise`\<readonly [`TItem`[], `undefined` \| ``null`` \| `TCursor`]\> |
 
 #### Returns
 
-`AsyncGenerator`<`TItem`, `void`, `undefined`\>
+`AsyncGenerator`\<`TItem`, `void`, `undefined`\>
 
 #### Defined in
 
@@ -76,7 +76,7 @@ Pacer implementations.
 
 | Name | Type |
 | :------ | :------ |
-| `pacer` | ``null`` \| [`Pacer`](interfaces/Pacer.md) \| (`req`: [`RestRequest`](classes/RestRequest.md)<`any`\>) => `Promise`<``null`` \| [`Pacer`](interfaces/Pacer.md)\> |
+| `pacer` | ``null`` \| [`Pacer`](interfaces/Pacer.md) \| (`req`: [`RestRequest`](classes/RestRequest.md)\<`any`\>) => `Promise`\<``null`` \| [`Pacer`](interfaces/Pacer.md)\> |
 
 #### Returns
 

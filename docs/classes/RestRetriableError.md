@@ -12,7 +12,7 @@
 
 ### constructor
 
-• **new RestRetriableError**(`message`, `delayMs`, `res`)
+• **new RestRetriableError**(`message`, `delayMs`, `res`): [`RestRetriableError`](RestRetriableError.md)
 
 #### Parameters
 
@@ -21,6 +21,10 @@
 | `message` | `string` |
 | `delayMs` | `number` |
 | `res` | [`RestResponse`](RestResponse.md) |
+
+#### Returns
+
+[`RestRetriableError`](RestRetriableError.md)
 
 #### Overrides
 
@@ -136,4 +140,4 @@ ___
 
 #### Defined in
 
-[src/errors/RestRetriableError.ts:5](https://github.com/clickup/rest-client/blob/master/src/errors/RestRetriableError.ts#L5)
+[src/errors/RestRetriableError.ts:7](https://github.com/clickup/rest-client/blob/master/src/errors/RestRetriableError.ts#L7)

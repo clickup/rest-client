@@ -12,7 +12,7 @@
 
 ### constructor
 
-• **new RestTokenInvalidError**(`humanReason`, `res`)
+• **new RestTokenInvalidError**(`humanReason`, `res`): [`RestTokenInvalidError`](RestTokenInvalidError.md)
 
 #### Parameters
 
@@ -20,6 +20,10 @@
 | :------ | :------ |
 | `humanReason` | `string` |
 | `res` | [`RestResponse`](RestResponse.md) |
+
+#### Returns
+
+[`RestTokenInvalidError`](RestTokenInvalidError.md)
 
 #### Overrides
 
@@ -135,4 +139,4 @@ ___
 
 #### Defined in
 
-[src/errors/RestTokenInvalidError.ts:5](https://github.com/clickup/rest-client/blob/master/src/errors/RestTokenInvalidError.ts#L5)
+[src/errors/RestTokenInvalidError.ts:6](https://github.com/clickup/rest-client/blob/master/src/errors/RestTokenInvalidError.ts#L6)

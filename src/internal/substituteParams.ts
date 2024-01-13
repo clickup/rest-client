@@ -5,7 +5,7 @@
  */
 export default function substituteParams<TBody>(
   url: string,
-  body: TBody
+  body: TBody,
 ): [string, TBody] {
   if (!body || typeof body !== "object") {
     return [url, body];

@@ -9,18 +9,18 @@ request processing.
 
 ### Middleware
 
-▸ **Middleware**(`req`, `next`): `Promise`<[`RestResponse`](../classes/RestResponse.md)\>
+▸ **Middleware**(`req`, `next`): `Promise`\<[`RestResponse`](../classes/RestResponse.md)\>
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `req` | [`RestRequest`](../classes/RestRequest.md)<`any`\> |
-| `next` | (`req`: [`RestRequest`](../classes/RestRequest.md)<`any`\>) => `Promise`<[`RestResponse`](../classes/RestResponse.md)\> |
+| `req` | [`RestRequest`](../classes/RestRequest.md)\<`any`\> |
+| `next` | (`req`: [`RestRequest`](../classes/RestRequest.md)\<`any`\>) => `Promise`\<[`RestResponse`](../classes/RestResponse.md)\> |
 
 #### Returns
 
-`Promise`<[`RestResponse`](../classes/RestResponse.md)\>
+`Promise`\<[`RestResponse`](../classes/RestResponse.md)\>
 
 #### Defined in
 

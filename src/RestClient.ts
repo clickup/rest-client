@@ -54,7 +54,7 @@ export default class RestClient {
    */
   withMiddleware(
     middleware: RestOptions["middlewares"][0],
-    method: "unshift" | "push" = "push"
+    method: "unshift" | "push" = "push",
   ) {
     const clone = new RestClient(this._options);
     clone._options.middlewares[method](middleware);
@@ -156,7 +156,7 @@ export default class RestClient {
    */
   withOAuth1(
     consumer: { consumerKey: string; consumerSecret: string },
-    token: TokenGetter<{ token: string; tokenSecret: string }>
+    token: TokenGetter<{ token: string; tokenSecret: string }>,
   ) {
     const oauth = new OAuth1({
       consumer: { key: consumer.consumerKey, secret: consumer.consumerSecret },
@@ -176,7 +176,7 @@ export default class RestClient {
           oauth.authorize(requestData, {
             key: tokenData.token,
             secret: tokenData.tokenSecret,
-          })
+          }),
         );
         for (const [name, value] of Object.entries(addHeaders)) {
           req.headers.set(name, value);
@@ -196,7 +196,7 @@ export default class RestClient {
         const unencodedHeader = name + ":" + password;
         req.headers.set(
           "Authorization",
-          "Basic " + Buffer.from(unencodedHeader).toString("base64")
+          "Basic " + Buffer.from(unencodedHeader).toString("base64"),
         );
         return next(req);
       });
@@ -211,7 +211,7 @@ export default class RestClient {
   get(
     path: string,
     args: Partial<Record<string, string | number | string[]>> = {},
-    accept: string = "application/json"
+    accept: string = "application/json",
   ) {
     return this._noBodyRequest(path, args, "GET", accept);
   }
@@ -224,7 +224,7 @@ export default class RestClient {
     body: string | Buffer | NodeJS.ReadableStream,
     contentType: string,
     method: "POST" | "PUT" | "PATCH" = "POST",
-    accept?: string
+    accept?: string,
   ) {
     const origShape = simpleShape(path);
     return new RestRequest(
@@ -236,7 +236,7 @@ export default class RestClient {
         "Content-Type": contentType,
       }),
       body,
-      origShape
+      origShape,
     );
   }
 
@@ -247,7 +247,7 @@ export default class RestClient {
     path: string,
     body: any,
     method: "POST" | "PUT" | "PATCH" | "DELETE" = "POST",
-    accept: string = "application/json"
+    accept: string = "application/json",
   ) {
     const origShape = simpleShape(path, body);
     [path, body] = substituteParams(path, body);
@@ -260,7 +260,7 @@ export default class RestClient {
         "Content-Type": "application/json",
       }),
       JSON.stringify(body),
-      origShape
+      origShape,
     );
   }
 
@@ -271,7 +271,7 @@ export default class RestClient {
     path: string,
     body: Partial<Record<string, string>> | string,
     method: "POST" | "PUT" | "PATCH" = "POST",
-    accept: string = "application/json"
+    accept: string = "application/json",
   ) {
     const origShape = simpleShape(path, body);
     [path, body] = substituteParams(path, body);
@@ -286,9 +286,9 @@ export default class RestClient {
       typeof body === "string"
         ? body
         : new URLSearchParams(
-            omitBy(body, isUndefined) as Record<string, string>
+            omitBy(body, isUndefined) as Record<string, string>,
           ).toString(),
-      origShape
+      origShape,
     );
   }
 
@@ -298,7 +298,7 @@ export default class RestClient {
   writeDelete(
     path: string,
     args: Partial<Record<string, string>> = {},
-    accept: string = "application/json"
+    accept: string = "application/json",
   ) {
     return this._noBodyRequest(path, args, "DELETE", accept);
   }
@@ -355,14 +355,14 @@ export default class RestClient {
     mimeType: string,
     stream: AsyncIterable<Buffer>,
     method: "POST" | "PUT" = "POST",
-    chunkSize: number
+    chunkSize: number,
   ) {
     return new RestRangeUploader(
       this,
       chunkSize,
       method,
       path,
-      mimeType
+      mimeType,
     ).upload(stream);
   }
 
@@ -381,7 +381,7 @@ export default class RestClient {
       "",
       new Headers({ "Content-Type": "application/json" }),
       JSON.stringify({ variables, query }), // variables first - for truncation in logs,
-      origShape
+      origShape,
     );
   }
 
@@ -392,7 +392,7 @@ export default class RestClient {
     path: string,
     args: Partial<Record<string, string | number | string[]>> = {},
     method: "GET" | "DELETE",
-    accept: string = "application/json"
+    accept: string = "application/json",
   ) {
     const origShape = simpleShape(path, args);
     [path, args] = substituteParams(path, args);
@@ -418,7 +418,7 @@ export default class RestClient {
       path,
       new Headers({ Accept: accept }),
       "",
-      origShape
+      origShape,
     );
   }
 }
@@ -431,7 +431,7 @@ export default class RestClient {
  */
 export async function tokenRetryStrategy<TData>(
   token: TokenGetter<TData>,
-  body: (tokenData: TData) => Promise<RestResponse>
+  body: (tokenData: TData) => Promise<RestResponse>,
 ) {
   let tokenData = await token(null);
   try {

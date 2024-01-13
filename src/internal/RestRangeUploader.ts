@@ -18,7 +18,7 @@ export default class RestRangeUploader {
     private _chunkSize: number,
     private _method: "POST" | "PUT",
     private _path: string,
-    private _mimeType: string
+    private _mimeType: string,
   ) {}
 
   async upload(stream: AsyncIterable<Buffer>) {
@@ -52,7 +52,7 @@ export default class RestRangeUploader {
       .writeRaw(this._path, buf, this._mimeType, this._method, "*/*")
       .setHeader(
         "Content-Range",
-        `bytes ${this._pos}-${this._pos + buf.length - 1}/${totalSize}`
+        `bytes ${this._pos}-${this._pos + buf.length - 1}/${totalSize}`,
       )
       .text();
     this._pos += buf.length;

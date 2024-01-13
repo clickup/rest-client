@@ -18,7 +18,7 @@ export default class RestStream {
     public readonly res: RestResponse,
     readerIterable: {
       [Symbol.asyncIterator]: () => AsyncGenerator<string, void>;
-    }
+    },
   ) {
     this._generator = readerIterable[Symbol.asyncIterator]();
   }

@@ -1,6 +1,6 @@
 [@clickup/rest-client](../README.md) / [Exports](../modules.md) / RestRequest
 
-# Class: RestRequest<TAssertShape\>
+# Class: RestRequest\<TAssertShape\>
 
 Type TAssertShape allows to limit json()'s assert callbacks to only those
 which return an object compatible with TAssertShape.
@@ -15,7 +15,7 @@ which return an object compatible with TAssertShape.
 
 ### constructor
 
-• **new RestRequest**<`TAssertShape`\>(`options`, `method`, `url`, `headers`, `body`, `shape?`)
+• **new RestRequest**\<`TAssertShape`\>(`options`, `method`, `url`, `headers`, `body`, `shape?`): [`RestRequest`](RestRequest.md)\<`TAssertShape`\>
 
 #### Type parameters
 
@@ -33,6 +33,10 @@ which return an object compatible with TAssertShape.
 | `headers` | `Headers` |
 | `body` | `string` \| `Buffer` \| `ReadableStream` |
 | `shape?` | `string` |
+
+#### Returns
+
+[`RestRequest`](RestRequest.md)\<`TAssertShape`\>
 
 #### Defined in
 
@@ -102,7 +106,7 @@ ___
 
 ### setHeader
 
-▸ **setHeader**(`name`, `value`): [`RestRequest`](RestRequest.md)<`TAssertShape`\>
+▸ **setHeader**(`name`, `value`): [`RestRequest`](RestRequest.md)\<`TAssertShape`\>
 
 Modifies the request by adding a custom HTTP header.
 
@@ -115,7 +119,7 @@ Modifies the request by adding a custom HTTP header.
 
 #### Returns
 
-[`RestRequest`](RestRequest.md)<`TAssertShape`\>
+[`RestRequest`](RestRequest.md)\<`TAssertShape`\>
 
 #### Defined in
 
@@ -125,7 +129,7 @@ ___
 
 ### setOptions
 
-▸ **setOptions**(`options`): [`RestRequest`](RestRequest.md)<`TAssertShape`\>
+▸ **setOptions**(`options`): [`RestRequest`](RestRequest.md)\<`TAssertShape`\>
 
 Modifies the request by adding a custom request option.
 
@@ -133,11 +137,11 @@ Modifies the request by adding a custom request option.
 
 | Name | Type |
 | :------ | :------ |
-| `options` | `Partial`<[`RestOptions`](../interfaces/RestOptions.md)\> |
+| `options` | `Partial`\<[`RestOptions`](../interfaces/RestOptions.md)\> |
 
 #### Returns
 
-[`RestRequest`](RestRequest.md)<`TAssertShape`\>
+[`RestRequest`](RestRequest.md)\<`TAssertShape`\>
 
 #### Defined in
 
@@ -147,7 +151,7 @@ ___
 
 ### setDebug
 
-▸ **setDebug**(`flag?`): [`RestRequest`](RestRequest.md)<`TAssertShape`\>
+▸ **setDebug**(`flag?`): [`RestRequest`](RestRequest.md)\<`TAssertShape`\>
 
 Forces RestClient to debug-output the request and response to console.
 Never use in production.
@@ -160,7 +164,7 @@ Never use in production.
 
 #### Returns
 
-[`RestRequest`](RestRequest.md)<`TAssertShape`\>
+[`RestRequest`](RestRequest.md)\<`TAssertShape`\>
 
 #### Defined in
 
@@ -170,7 +174,7 @@ ___
 
 ### json
 
-▸ **json**<`TJson`\>(`assert`, `...checkers`): `Promise`<`TJson`\>
+▸ **json**\<`TJson`\>(`assert`, `...checkers`): `Promise`\<`TJson`\>
 
 Sends the request and reads the response a JSON. In absolute most of the
 cases, this method is used to reach API responses. The assert callback
@@ -187,12 +191,12 @@ not let people to do anti-patterns.
 
 | Name | Type |
 | :------ | :------ |
-| `assert` | { `mask`: (`obj`: `any`) => `TJson`  } \| { `$assert`: (`obj`: `any`) => `TJson`  } \| (`obj`: `any`) => `TJson` |
+| `assert` | \{ `mask`: (`obj`: `any`) => `TJson`  } \| \{ `$assert`: (`obj`: `any`) => `TJson`  } \| (`obj`: `any`) => `TJson` |
 | `...checkers` | (`json`: `TJson`, `res`: [`RestResponse`](RestResponse.md)) => ``false`` \| `Error`[] |
 
 #### Returns
 
-`Promise`<`TJson`\>
+`Promise`\<`TJson`\>
 
 #### Defined in
 
@@ -202,13 +206,13 @@ ___
 
 ### text
 
-▸ **text**(): `Promise`<`string`\>
+▸ **text**(): `Promise`\<`string`\>
 
 Sends the request and returns plaintext response.
 
 #### Returns
 
-`Promise`<`string`\>
+`Promise`\<`string`\>
 
 #### Defined in
 
@@ -218,7 +222,7 @@ ___
 
 ### response
 
-▸ **response**(): `Promise`<[`RestResponse`](RestResponse.md)\>
+▸ **response**(): `Promise`\<[`RestResponse`](RestResponse.md)\>
 
 Returns the entire RestResponse object with response status and headers
 information in it. Try to minimize usage of this method, because it doesn't
@@ -226,7 +230,7 @@ make any assumptions on the response structure.
 
 #### Returns
 
-`Promise`<[`RestResponse`](RestResponse.md)\>
+`Promise`\<[`RestResponse`](RestResponse.md)\>
 
 #### Defined in
 
@@ -236,7 +240,7 @@ ___
 
 ### stream
 
-▸ **stream**(`preloadChars?`): `Promise`<[`RestStream`](RestStream.md)\>
+▸ **stream**(`preloadChars?`): `Promise`\<[`RestStream`](RestStream.md)\>
 
 Sends the requests and returns RestStream object. You MUST iterate over
 this object entirely (or call its return() method), otherwise the
@@ -250,7 +254,7 @@ connection will remain dangling.
 
 #### Returns
 
-`Promise`<[`RestStream`](RestStream.md)\>
+`Promise`\<[`RestStream`](RestStream.md)\>
 
 #### Defined in
 

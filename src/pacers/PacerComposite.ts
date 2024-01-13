@@ -14,7 +14,7 @@ export default class PacerComposite implements Pacer {
       this._pacers.map(async (pacer) => ({
         pacer,
         delay: await pacer.touch(),
-      }))
+      })),
     );
     const pair = maxBy(delays, ({ delay }) => delay.delayMs);
     return pair

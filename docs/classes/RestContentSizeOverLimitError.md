@@ -12,7 +12,7 @@
 
 ### constructor
 
-• **new RestContentSizeOverLimitError**(`message`, `res`)
+• **new RestContentSizeOverLimitError**(`message`, `res`): [`RestContentSizeOverLimitError`](RestContentSizeOverLimitError.md)
 
 #### Parameters
 
@@ -20,6 +20,10 @@
 | :------ | :------ |
 | `message` | `string` |
 | `res` | [`RestResponse`](RestResponse.md) |
+
+#### Returns
+
+[`RestContentSizeOverLimitError`](RestContentSizeOverLimitError.md)
 
 #### Inherited from
 
