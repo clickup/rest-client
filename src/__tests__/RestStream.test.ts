@@ -11,7 +11,7 @@ let ORIGIN: string;
 beforeAll(async () => {
   ORIGIN = await new Promise((resolve) => {
     server.listen(0, () =>
-      resolve("http://127.0.0.1:" + (server.address() as any).port)
+      resolve("http://127.0.0.1:" + (server.address() as any).port),
     );
   });
 });

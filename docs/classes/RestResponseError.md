@@ -22,7 +22,7 @@
 
 ### constructor
 
-• **new RestResponseError**(`message`, `res`)
+• **new RestResponseError**(`message`, `res`): [`RestResponseError`](RestResponseError.md)
 
 #### Parameters
 
@@ -30,6 +30,10 @@
 | :------ | :------ |
 | `message` | `string` |
 | `res` | [`RestResponse`](RestResponse.md) |
+
+#### Returns
+
+[`RestResponseError`](RestResponseError.md)
 
 #### Overrides
 

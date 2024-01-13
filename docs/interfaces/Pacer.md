@@ -26,14 +26,14 @@ Human readable name of the pacer, used when composing multiple pacers.
 
 ### touch
 
-▸ **touch**(): `Promise`<[`PacerDelay`](PacerDelay.md)\>
+▸ **touch**(): `Promise`\<[`PacerDelay`](PacerDelay.md)\>
 
 Signals that we're about to send a request. Returns the delay we need to
 wait for before actually sending.
 
 #### Returns
 
-`Promise`<[`PacerDelay`](PacerDelay.md)\>
+`Promise`\<[`PacerDelay`](PacerDelay.md)\>
 
 #### Defined in
 

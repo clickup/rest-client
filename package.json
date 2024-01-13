@@ -1,7 +1,7 @@
 {
   "name": "@clickup/rest-client",
   "description": "A syntax sugar tool around Node fetch() API, tailored to work with TypeScript and response validators",
-  "version": "2.10.294",
+  "version": "2.10.296",
   "license": "MIT",
   "keywords": [
     "rest-client",
@@ -27,7 +27,7 @@
     "lint": "eslint . --ext .ts --cache --cache-location dist/.eslintcache",
     "test": "jest",
     "docs": "rm -rf docs && typedoc --plugin typedoc-plugin-markdown --plugin typedoc-plugin-merge-modules && sed -i '' -E 's#packages/[^/]+/##g' $(find docs -type f -name '*.md')",
-    "clean": "rm -rf dist node_modules yarn.lock package-lock.json",
+    "clean": "rm -rf dist node_modules yarn.lock package-lock.json pnpm-lock.yaml *.log",
     "copy-package-to-public-dir": "copy-package-to-public-dir.sh",
     "backport-package-from-public-dir": "backport-package-from-public-dir.sh",
     "deploy": "npm run build && npm run lint && npm run test && npm publish --access=public"
@@ -45,6 +45,7 @@
     "@types/jest": "^29.5.5",
     "@types/lodash": "^4.14.175",
     "@types/node-fetch": "^2.6.4",
+    "@types/node": "^20.4.1",
     "@typescript-eslint/eslint-plugin": "^5.59.6",
     "@typescript-eslint/parser": "^5.59.6",
     "eslint-import-resolver-typescript": "^3.5.5",
@@ -57,6 +58,8 @@
     "eslint-plugin-typescript-sort-keys": "^2.3.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "eslint": "^8.40.0",
+    "jest": "^29.7.0",
+    "prettier": "3.2.1",
     "superstruct": "^1.0.3",
     "ts-jest": "^29.1.1",
     "typedoc-plugin-markdown": "^3.16.0",

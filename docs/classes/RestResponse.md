@@ -16,18 +16,22 @@ body and make it a part of RestResponse abstraction.
 
 ### constructor
 
-• **new RestResponse**(`req`, `agent`, `status`, `headers`, `text`, `textIsPartial`)
+• **new RestResponse**(`req`, `agent`, `status`, `headers`, `text`, `textIsPartial`): [`RestResponse`](RestResponse.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `req` | [`RestRequest`](RestRequest.md)<`any`\> |
+| `req` | [`RestRequest`](RestRequest.md)\<`any`\> |
 | `agent` | ``null`` \| `Agent` |
 | `status` | `number` |
 | `headers` | `Headers` |
 | `text` | `string` |
 | `textIsPartial` | `boolean` |
+
+#### Returns
+
+[`RestResponse`](RestResponse.md)
 
 #### Defined in
 
@@ -37,7 +41,7 @@ body and make it a part of RestResponse abstraction.
 
 ### req
 
-• `Readonly` **req**: [`RestRequest`](RestRequest.md)<`any`\>
+• `Readonly` **req**: [`RestRequest`](RestRequest.md)\<`any`\>
 
 #### Defined in
 

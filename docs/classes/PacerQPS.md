@@ -20,7 +20,7 @@ the pacing algorithm.
 
 ### constructor
 
-• **new PacerQPS**(`_options`, `_backend`)
+• **new PacerQPS**(`_options`, `_backend`): [`PacerQPS`](PacerQPS.md)
 
 #### Parameters
 
@@ -28,6 +28,10 @@ the pacing algorithm.
 | :------ | :------ |
 | `_options` | [`PacerQPSOptions`](../interfaces/PacerQPSOptions.md) |
 | `_backend` | [`PacerQPSBackend`](../interfaces/PacerQPSBackend.md) |
+
+#### Returns
+
+[`PacerQPS`](PacerQPS.md)
 
 #### Defined in
 
@@ -57,14 +61,14 @@ Human readable name of the pacer, used when composing multiple pacers.
 
 ### touch
 
-▸ **touch**(): `Promise`<[`PacerDelay`](../interfaces/PacerDelay.md)\>
+▸ **touch**(): `Promise`\<[`PacerDelay`](../interfaces/PacerDelay.md)\>
 
 Signals that we're about to send a request. Returns the delay we need to
 wait for before actually sending.
 
 #### Returns
 
-`Promise`<[`PacerDelay`](../interfaces/PacerDelay.md)\>
+`Promise`\<[`PacerDelay`](../interfaces/PacerDelay.md)\>
 
 #### Implementation of
 

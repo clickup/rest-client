@@ -79,8 +79,8 @@ A logic which runs on different IO stages (delay and heartbeats).
 
 | Name | Type |
 | :------ | :------ |
-| `heartbeat` | () => `Promise`<`void`\> |
-| `delay` | (`ms`: `number`) => `Promise`<`void`\> |
+| `heartbeat` | () => `Promise`\<`void`\> |
+| `delay` | (`ms`: `number`) => `Promise`\<`void`\> |
 
 #### Defined in
 
@@ -185,6 +185,9 @@ ___
 
 • **logger**: (`event`: [`RestLogEvent`](RestLogEvent.md)) => `void`
 
+Logger to be used for each responses (including retried) plus for backoff
+delay events logging.
+
 #### Type declaration
 
 ▸ (`event`): `void`
@@ -224,6 +227,19 @@ ___
 
 • **isSuccessResponse**: (`res`: [`RestResponse`](../classes/RestResponse.md)) => ``"SUCCESS"`` \| ``"THROW"`` \| ``"BEST_EFFORT"``
 
+If set, makes decision whether the response is successful or not. The
+response will either be returned to the client, or an error will be thrown.
+This allows to treat some non-successful HTTP statuses as success if the
+remote API is that weird. Return values:
+* "SUCCESS" - the request will be considered successful, no further checks
+  will be performed;
+* "BEST_EFFORT" - inconclusive, the request may be either successful or
+  unsuccessful, additional tests (e.g. will check HTTP status code) will be
+  performed;
+* "THROW" - the request resulted in error. Additional tests will be
+  performed to determine is the error is retriable, is OAuth token good,
+  and etc.
+
 #### Type declaration
 
 ▸ (`res`): ``"SUCCESS"`` \| ``"THROW"`` \| ``"BEST_EFFORT"``
@@ -261,6 +277,16 @@ ___
 
 • **isRateLimitError**: (`res`: [`RestResponse`](../classes/RestResponse.md)) => `number` \| ``"BEST_EFFORT"`` \| ``"SOMETHING_ELSE"`` \| ``"RATE_LIMIT"``
 
+Decides whether the response is a rate-limit error or not. Returning
+non-zero value is treated as retry delay (if retries are set up). In case
+the returned value is "SOMETHING_ELSE", the response ought to be either
+success or some other error. Returning "BEST_EFFORT" turns on built-in
+heuristic (e.g. relying on HTTP status code and Retry-After header). In
+case we've made a decision that it's a rate limited error, the request is
+always retried; this covers a very common case when we have both
+isRateLimitError and isRetriableError handlers set up, and they return
+contradictory information; then isRateLimitError wins.
+
 #### Type declaration
 
 ▸ (`res`): `number` \| ``"BEST_EFFORT"`` \| ``"SOMETHING_ELSE"`` \| ``"RATE_LIMIT"``
@@ -295,6 +321,9 @@ ___
 
 • **isTokenInvalidError**: (`res`: [`RestResponse`](../classes/RestResponse.md)) => `boolean`
 
+Decides whether the response is a token-invalid error or not. In case it's
+not, the response ought to be either success or some other error.
+
 #### Type declaration
 
 ▸ (`res`): `boolean`
@@ -321,6 +350,14 @@ ___
 ### isRetriableError
 
 • **isRetriableError**: (`res`: [`RestResponse`](../classes/RestResponse.md), `_error`: `any`) => `number` \| ``"BEST_EFFORT"`` \| ``"NEVER_RETRY"`` \| ``"RETRY"``
+
+Called only if we haven't decided earlier that it's a rate limit error.
+Decides whether the response is a retriable error or not. In case the
+returned value is "NEVER_RETRY", the response ought to be either success or
+some other error, but it's guaranteed that the request won't be retried.
+Returning "BEST_EFFORT" turns on built-in heuristics (e.g. never retry "not
+found" errors). Returning a number is treated as "RETRY", and the next
+retry will happen in not less than this number of milliseconds.
 
 #### Type declaration
 

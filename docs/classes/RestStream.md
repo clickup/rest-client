@@ -15,7 +15,7 @@ use something like `Buffer.from(responseText, "binary")`.
 
 ### constructor
 
-• **new RestStream**(`res`, `readerIterable`)
+• **new RestStream**(`res`, `readerIterable`): [`RestStream`](RestStream.md)
 
 #### Parameters
 
@@ -23,7 +23,11 @@ use something like `Buffer.from(responseText, "binary")`.
 | :------ | :------ |
 | `res` | [`RestResponse`](RestResponse.md) |
 | `readerIterable` | `Object` |
-| `readerIterable.[asyncIterator]` | () => `AsyncGenerator`<`string`, `void`, `unknown`\> |
+| `readerIterable.[asyncIterator]` | () => `AsyncGenerator`\<`string`, `void`, `unknown`\> |
+
+#### Returns
+
+[`RestStream`](RestStream.md)
 
 #### Defined in
 
@@ -43,7 +47,7 @@ use something like `Buffer.from(responseText, "binary")`.
 
 ### consumeReturningPrefix
 
-▸ **consumeReturningPrefix**(`maxChars`): `Promise`<`string`\>
+▸ **consumeReturningPrefix**(`maxChars`): `Promise`\<`string`\>
 
 Reads the prefix of the stream. Closes the connection after the read is
 done in all cases, so safe to be used to e.g. receive a trimmed response.
@@ -56,7 +60,7 @@ done in all cases, so safe to be used to e.g. receive a trimmed response.
 
 #### Returns
 
-`Promise`<`string`\>
+`Promise`\<`string`\>
 
 #### Defined in
 
@@ -66,13 +70,13 @@ ___
 
 ### close
 
-▸ **close**(): `Promise`<`void`\>
+▸ **close**(): `Promise`\<`void`\>
 
 Closes the connection.
 
 #### Returns
 
-`Promise`<`void`\>
+`Promise`\<`void`\>
 
 #### Defined in
 
@@ -82,7 +86,7 @@ ___
 
 ### [asyncIterator]
 
-▸ **[asyncIterator]**(): `AsyncGenerator`<`string`, `void`, `unknown`\>
+▸ **[asyncIterator]**(): `AsyncGenerator`\<`string`, `void`, `unknown`\>
 
 Allows to iterate over the entire stream of data. You must consume the
 entire iterable or at least call this.close(), otherwise the connection may
@@ -90,7 +94,7 @@ remain open.
 
 #### Returns
 
-`AsyncGenerator`<`string`, `void`, `unknown`\>
+`AsyncGenerator`\<`string`, `void`, `unknown`\>
 
 #### Defined in
 

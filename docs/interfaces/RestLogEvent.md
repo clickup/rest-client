@@ -18,7 +18,7 @@ ___
 
 ### req
 
-• **req**: [`RestRequest`](../classes/RestRequest.md)<`any`\>
+• **req**: [`RestRequest`](../classes/RestRequest.md)\<`any`\>
 
 #### Defined in
 

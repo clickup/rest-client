@@ -11,13 +11,17 @@ RestClient is an immutable object which allows to:
 
 ### constructor
 
-• **new RestClient**(`options?`)
+• **new RestClient**(`options?`): [`RestClient`](RestClient.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `options` | `Partial`<[`RestOptions`](../interfaces/RestOptions.md)\> |
+| `options` | `Partial`\<[`RestOptions`](../interfaces/RestOptions.md)\> |
+
+#### Returns
+
+[`RestClient`](RestClient.md)
 
 #### Defined in
 
@@ -35,7 +39,7 @@ Returns a new RestClient with some options updated with the passed ones.
 
 | Name | Type |
 | :------ | :------ |
-| `options` | `Partial`<[`RestOptions`](../interfaces/RestOptions.md)\> |
+| `options` | `Partial`\<[`RestOptions`](../interfaces/RestOptions.md)\> |
 
 #### Returns
 
@@ -86,7 +90,7 @@ appears here which we must protect against in the code below.
 
 | Name | Type |
 | :------ | :------ |
-| `base` | `string` \| () => `Promise`<`string`\> |
+| `base` | `string` \| () => `Promise`\<`string`\> |
 
 #### Returns
 
@@ -109,7 +113,7 @@ Returns a new RestClient with a custom header.
 | Name | Type |
 | :------ | :------ |
 | `name` | `string` |
-| `value` | `string` \| () => `Promise`<`string`\> |
+| `value` | `string` \| () => `Promise`\<`string`\> |
 
 #### Returns
 
@@ -152,7 +156,7 @@ logic, e.g.:
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
-| `token` | [`TokenGetter`](../interfaces/TokenGetter.md)<`string`\> | `undefined` |
+| `token` | [`TokenGetter`](../interfaces/TokenGetter.md)\<`string`\> | `undefined` |
 | `bearerPrefix` | `string` | `"Bearer "` |
 
 #### Returns
@@ -186,7 +190,7 @@ of arbitrary requests, it can only send its own requests.
 | `consumer` | `Object` |
 | `consumer.consumerKey` | `string` |
 | `consumer.consumerSecret` | `string` |
-| `token` | [`TokenGetter`](../interfaces/TokenGetter.md)<{ `token`: `string` ; `tokenSecret`: `string`  }\> |
+| `token` | [`TokenGetter`](../interfaces/TokenGetter.md)\<\{ `token`: `string` ; `tokenSecret`: `string`  }\> |
 
 #### Returns
 
@@ -208,7 +212,7 @@ Returns a new RestClient with basic authorization workflow.
 
 | Name | Type |
 | :------ | :------ |
-| `token` | [`TokenGetter`](../interfaces/TokenGetter.md)<{ `name`: `string` ; `password`: `string`  }\> |
+| `token` | [`TokenGetter`](../interfaces/TokenGetter.md)\<\{ `name`: `string` ; `password`: `string`  }\> |
 
 #### Returns
 
@@ -222,7 +226,7 @@ ___
 
 ### get
 
-▸ **get**(`path`, `args?`, `accept?`): [`RestRequest`](RestRequest.md)<`any`\>
+▸ **get**(`path`, `args?`, `accept?`): [`RestRequest`](RestRequest.md)\<`any`\>
 
 Sends a plain GET request without body.
 
@@ -233,12 +237,12 @@ NOTE, all args will be passed through `encodeURIComponent`.
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `path` | `string` | `undefined` |
-| `args` | `Partial`<`Record`<`string`, `string` \| `number` \| `string`[]\>\> | `{}` |
+| `args` | `Partial`\<`Record`\<`string`, `string` \| `number` \| `string`[]\>\> | `{}` |
 | `accept` | `string` | `"application/json"` |
 
 #### Returns
 
-[`RestRequest`](RestRequest.md)<`any`\>
+[`RestRequest`](RestRequest.md)\<`any`\>
 
 #### Defined in
 
@@ -248,7 +252,7 @@ ___
 
 ### writeRaw
 
-▸ **writeRaw**(`path`, `body`, `contentType`, `method?`, `accept?`): [`RestRequest`](RestRequest.md)<`any`\>
+▸ **writeRaw**(`path`, `body`, `contentType`, `method?`, `accept?`): [`RestRequest`](RestRequest.md)\<`any`\>
 
 Writes some raw string, buffer or a stream.
 
@@ -264,7 +268,7 @@ Writes some raw string, buffer or a stream.
 
 #### Returns
 
-[`RestRequest`](RestRequest.md)<`any`\>
+[`RestRequest`](RestRequest.md)\<`any`\>
 
 #### Defined in
 
@@ -274,7 +278,7 @@ ___
 
 ### writeJson
 
-▸ **writeJson**(`path`, `body`, `method?`, `accept?`): [`RestRequest`](RestRequest.md)<`any`\>
+▸ **writeJson**(`path`, `body`, `method?`, `accept?`): [`RestRequest`](RestRequest.md)\<`any`\>
 
 A shortcut method to write JSON body.
 
@@ -289,7 +293,7 @@ A shortcut method to write JSON body.
 
 #### Returns
 
-[`RestRequest`](RestRequest.md)<`any`\>
+[`RestRequest`](RestRequest.md)\<`any`\>
 
 #### Defined in
 
@@ -299,7 +303,7 @@ ___
 
 ### writeForm
 
-▸ **writeForm**(`path`, `body`, `method?`, `accept?`): [`RestRequest`](RestRequest.md)<`any`\>
+▸ **writeForm**(`path`, `body`, `method?`, `accept?`): [`RestRequest`](RestRequest.md)\<`any`\>
 
 A shortcut method to write "application/x-www-form-urlencoded" data.
 
@@ -308,13 +312,13 @@ A shortcut method to write "application/x-www-form-urlencoded" data.
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `path` | `string` | `undefined` |
-| `body` | `string` \| `Partial`<`Record`<`string`, `string`\>\> | `undefined` |
+| `body` | `string` \| `Partial`\<`Record`\<`string`, `string`\>\> | `undefined` |
 | `method` | ``"POST"`` \| ``"PUT"`` \| ``"PATCH"`` | `"POST"` |
 | `accept` | `string` | `"application/json"` |
 
 #### Returns
 
-[`RestRequest`](RestRequest.md)<`any`\>
+[`RestRequest`](RestRequest.md)\<`any`\>
 
 #### Defined in
 
@@ -324,7 +328,7 @@ ___
 
 ### writeDelete
 
-▸ **writeDelete**(`path`, `args?`, `accept?`): [`RestRequest`](RestRequest.md)<`any`\>
+▸ **writeDelete**(`path`, `args?`, `accept?`): [`RestRequest`](RestRequest.md)\<`any`\>
 
 A shortcut method to write DELETE request.
 
@@ -333,12 +337,12 @@ A shortcut method to write DELETE request.
 | Name | Type | Default value |
 | :------ | :------ | :------ |
 | `path` | `string` | `undefined` |
-| `args` | `Partial`<`Record`<`string`, `string`\>\> | `{}` |
+| `args` | `Partial`\<`Record`\<`string`, `string`\>\> | `{}` |
 | `accept` | `string` | `"application/json"` |
 
 #### Returns
 
-[`RestRequest`](RestRequest.md)<`any`\>
+[`RestRequest`](RestRequest.md)\<`any`\>
 
 #### Defined in
 
@@ -348,7 +352,7 @@ ___
 
 ### writeGraphQLX
 
-▸ **writeGraphQLX**(`query`, `variables?`): [`RestRequest`](RestRequest.md)<`any`\>
+▸ **writeGraphQLX**(`query`, `variables?`): [`RestRequest`](RestRequest.md)\<`any`\>
 
 Returns a RestRequest prepared for sending GraphQL operation.
 - Expects the response to contain no errors; throws otherwise.
@@ -365,7 +369,7 @@ Returns a RestRequest prepared for sending GraphQL operation.
 
 #### Returns
 
-[`RestRequest`](RestRequest.md)<`any`\>
+[`RestRequest`](RestRequest.md)\<`any`\>
 
 #### Defined in
 
@@ -375,7 +379,7 @@ ___
 
 ### writeGraphQLNullable
 
-▸ **writeGraphQLNullable**(`query`, `variables?`): [`RestRequest`](RestRequest.md)<`undefined` \| ``null`` \| { `data?`: `any` ; `error?`: `any` ; `errors?`: `any`[]  }\>
+▸ **writeGraphQLNullable**(`query`, `variables?`): [`RestRequest`](RestRequest.md)\<`undefined` \| ``null`` \| \{ `data?`: `any` ; `error?`: `any` ; `errors?`: `any`[]  }\>
 
 Same as writeGraphQLX(), but doesn't throw if GraphQL response contains
 non-empty `error` or `errors` fields and instead returns the full response.
@@ -390,7 +394,7 @@ I.e. allows the caller to process these errors.
 
 #### Returns
 
-[`RestRequest`](RestRequest.md)<`undefined` \| ``null`` \| { `data?`: `any` ; `error?`: `any` ; `errors?`: `any`[]  }\>
+[`RestRequest`](RestRequest.md)\<`undefined` \| ``null`` \| \{ `data?`: `any` ; `error?`: `any` ; `errors?`: `any`[]  }\>
 
 #### Defined in
 
@@ -400,7 +404,7 @@ ___
 
 ### rangeUpload
 
-▸ **rangeUpload**(`path`, `mimeType`, `stream`, `method?`, `chunkSize`): `Promise`<``null`` \| `string`\>
+▸ **rangeUpload**(`path`, `mimeType`, `stream`, `method?`, `chunkSize`): `Promise`\<``null`` \| `string`\>
 
 Performs a series of Content-Range requests with content from a sequence of
 Buffers.
@@ -411,13 +415,13 @@ Buffers.
 | :------ | :------ | :------ |
 | `path` | `string` | `undefined` |
 | `mimeType` | `string` | `undefined` |
-| `stream` | `AsyncIterable`<`Buffer`\> | `undefined` |
+| `stream` | `AsyncIterable`\<`Buffer`\> | `undefined` |
 | `method` | ``"POST"`` \| ``"PUT"`` | `"POST"` |
 | `chunkSize` | `number` | `undefined` |
 
 #### Returns
 
-`Promise`<``null`` \| `string`\>
+`Promise`\<``null`` \| `string`\>
 
 #### Defined in
 

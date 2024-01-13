@@ -27,7 +27,7 @@ export interface RestLogEvent {
 export interface Middleware {
   (
     req: RestRequest,
-    next: (req: RestRequest) => Promise<RestResponse>
+    next: (req: RestRequest) => Promise<RestResponse>,
   ): Promise<RestResponse>;
 }
 
@@ -140,7 +140,7 @@ export default interface RestOptions {
    * isRateLimitError and isRetriableError handlers set up, and they return
    * contradictory information; then isRateLimitError wins. */
   isRateLimitError: (
-    res: RestResponse
+    res: RestResponse,
   ) => "SOMETHING_ELSE" | "RATE_LIMIT" | "BEST_EFFORT" | number;
   /** Decides whether the response is a token-invalid error or not. In case it's
    * not, the response ought to be either success or some other error. */
@@ -154,7 +154,7 @@ export default interface RestOptions {
    * retry will happen in not less than this number of milliseconds. */
   isRetriableError: (
     res: RestResponse,
-    _error: any
+    _error: any,
   ) => "NEVER_RETRY" | "RETRY" | "BEST_EFFORT" | number;
 }
 

@@ -90,7 +90,7 @@ export async function serverAssertConnectionsCount(expect: number) {
   let got: number = 0;
   for (let timeStart = Date.now(); Date.now() - timeStart < 10000; ) {
     got = await new Promise((resolve) =>
-      server.getConnections((_, count) => resolve(count))
+      server.getConnections((_, count) => resolve(count)),
     );
     if (got === expect) {
       return;
@@ -106,7 +106,7 @@ export class TimeoutError extends Error {}
 
 export function createFetchReader(
   url: string,
-  options: RestFetchReaderOptions = {}
+  options: RestFetchReaderOptions = {},
 ) {
   return new RestFetchReader(
     url,
@@ -116,7 +116,7 @@ export function createFetchReader(
         throw new TimeoutError("timed out");
       },
       ...options,
-    }
+    },
   );
 }
 
@@ -133,15 +133,15 @@ export async function createRestStream(url: string, preloadBytes?: number) {
       reader.status,
       reader.headers,
       reader.textFetched.toString(),
-      reader.textIsPartial
+      reader.textIsPartial,
     ),
-    reader[Symbol.asyncIterator]()
+    reader[Symbol.asyncIterator](),
   );
 }
 
 export async function consumeIterable(
   iterable: AsyncIterable<string>,
-  delayMs?: number
+  delayMs?: number,
 ) {
   let rest = "";
   for await (const chunk of iterable) {
@@ -168,6 +168,6 @@ export async function consumeReadable(stream: Readable) {
 
 async function write(res: http.ServerResponse, bytes: number | Buffer) {
   return new Promise((r) =>
-    res.write(typeof bytes === "number" ? "x".repeat(bytes) : bytes, r)
+    res.write(typeof bytes === "number" ? "x".repeat(bytes) : bytes, r),
   );
 }

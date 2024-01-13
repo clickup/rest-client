@@ -1,6 +1,6 @@
 [@clickup/rest-client](../README.md) / [Exports](../modules.md) / TokenGetter
 
-# Interface: TokenGetter<TData\>
+# Interface: TokenGetter\<TData\>
 
 A callback which returns access token, possibly after refreshing it, and also
 possibly before a retry on "invalid token" condition. I.e. it can be called
@@ -17,7 +17,7 @@ will be passed as a parameter).
 
 ### TokenGetter
 
-▸ **TokenGetter**(`prevError`): `Promise`<`TData`\>
+▸ **TokenGetter**(`prevError`): `Promise`\<`TData`\>
 
 #### Parameters
 
@@ -27,7 +27,7 @@ will be passed as a parameter).
 
 #### Returns
 
-`Promise`<`TData`\>
+`Promise`\<`TData`\>
 
 #### Defined in
 

@@ -12,13 +12,17 @@ A Pacer which runs all sub-pacers and chooses the largest delay.
 
 ### constructor
 
-• **new PacerComposite**(`_pacers`)
+• **new PacerComposite**(`_pacers`): [`PacerComposite`](PacerComposite.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `_pacers` | [`Pacer`](../interfaces/Pacer.md)[] |
+
+#### Returns
+
+[`PacerComposite`](PacerComposite.md)
 
 #### Defined in
 
@@ -44,14 +48,14 @@ Human readable name of the pacer, used when composing multiple pacers.
 
 ### touch
 
-▸ **touch**(): `Promise`<{ `delayMs`: `number` ; `reason`: `string`  }\>
+▸ **touch**(): `Promise`\<\{ `delayMs`: `number` ; `reason`: `string`  }\>
 
 Signals that we're about to send a request. Returns the delay we need to
 wait for before actually sending.
 
 #### Returns
 
-`Promise`<{ `delayMs`: `number` ; `reason`: `string`  }\>
+`Promise`\<\{ `delayMs`: `number` ; `reason`: `string`  }\>
 
 #### Implementation of
 

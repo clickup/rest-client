@@ -12,7 +12,7 @@
 
 ### constructor
 
-• **new RestRateLimitError**(`message`, `delayMs`, `res`)
+• **new RestRateLimitError**(`message`, `delayMs`, `res`): [`RestRateLimitError`](RestRateLimitError.md)
 
 #### Parameters
 
@@ -21,6 +21,10 @@
 | `message` | `string` |
 | `delayMs` | `number` |
 | `res` | [`RestResponse`](RestResponse.md) |
+
+#### Returns
+
+[`RestRateLimitError`](RestRateLimitError.md)
 
 #### Overrides
 
@@ -38,7 +42,7 @@
 
 #### Defined in
 
-[src/errors/RestRateLimitError.ts:5](https://github.com/clickup/rest-client/blob/master/src/errors/RestRateLimitError.ts#L5)
+[src/errors/RestRateLimitError.ts:7](https://github.com/clickup/rest-client/blob/master/src/errors/RestRateLimitError.ts#L7)
 
 ___
 

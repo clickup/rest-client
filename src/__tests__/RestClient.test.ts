@@ -11,22 +11,22 @@ test("fetch_loopback_url_fails", async () => {
   const client = new RestClient();
   await expect(client.get("http://localhost/abc").response()).rejects.toThrow(
     new RegExp(
-      "^Domain localhost resolves to a non-public \\(loopback\\) IP address (127\\.0\\.0\\.1)|(\\:\\:1)"
-    )
+      "^Domain localhost resolves to a non-public \\(loopback\\) IP address (127\\.0\\.0\\.1)|(\\:\\:1)",
+    ),
   );
 });
 
 test("fetch_private_url_fails", async () => {
   const client = new RestClient();
   await expect(client.get("http://10.0.0.1/abc").response()).rejects.toThrow(
-    "Domain 10.0.0.1 resolves to a non-public (private) IP address 10.0.0.1"
+    "Domain 10.0.0.1 resolves to a non-public (private) IP address 10.0.0.1",
   );
 });
 
 test("fetch_url_with_redirect_fails", async () => {
   const client = new RestClient();
   await expect(client.get("http://google.com").response()).rejects.toThrow(
-    /redirect mode is set to error:/
+    /redirect mode is set to error:/,
   );
 });
 

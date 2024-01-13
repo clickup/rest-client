@@ -33,7 +33,7 @@ export default class RestRequest<TAssertShape = any> {
     public url: string,
     public readonly headers: Headers,
     public readonly body: string | Buffer | NodeJS.ReadableStream,
-    public readonly shape?: string
+    public readonly shape?: string,
   ) {
     this.options = { ...options };
   }
@@ -120,7 +120,7 @@ export default class RestRequest<TAssertShape = any> {
       // By passing Number.MAX_SAFE_INTEGER to stream(), we ensure that the
       // entire data will be preloaded, or the loading will fail due to
       // throwIfResIsBigger limitation, whichever will happen faster.
-      Number.MAX_SAFE_INTEGER
+      Number.MAX_SAFE_INTEGER,
     );
     await stream.close();
     return stream.res;
@@ -182,7 +182,7 @@ export default class RestRequest<TAssertShape = any> {
               await reader?.close();
               throw e;
             }
-          }
+          },
         );
 
         // The only place where we return the response. Otherwise we retry or
@@ -215,7 +215,7 @@ export default class RestRequest<TAssertShape = any> {
           error,
           this.options,
           res,
-          retryDelayMs
+          retryDelayMs,
         );
         if (newRetryDelay === "no_retry") {
           throw error;
@@ -228,7 +228,7 @@ export default class RestRequest<TAssertShape = any> {
       retryDelayMs *= random(
         1 - this.options.retryDelayJitter,
         1 + this.options.retryDelayJitter,
-        true
+        true,
       );
       await this.options.heartbeater.delay(retryDelayMs);
 
@@ -279,7 +279,7 @@ export default class RestRequest<TAssertShape = any> {
       const isInternal = range !== "unicast";
       if (isInternal) {
         throw new RestError(
-          `Domain ${hostname} resolves to a non-public (${range}) IP address ${addr.address}`
+          `Domain ${hostname} resolves to a non-public (${range}) IP address ${addr.address}`,
         );
       }
 
@@ -333,7 +333,7 @@ export default class RestRequest<TAssertShape = any> {
       onTimeout: (reader) => {
         throw new RestTimeoutError(
           `Timed out while reading response body (${this.options.timeoutMs} ms)`,
-          this._createRestResponse(reader)!
+          this._createRestResponse(reader)!,
         );
       },
       onAfterRead: (reader) => {
@@ -343,7 +343,7 @@ export default class RestRequest<TAssertShape = any> {
         ) {
           throw new RestContentSizeOverLimitError(
             `Content size is over limit of ${this.options.throwIfResIsBigger} characters`,
-            this._createRestResponse(reader)!
+            this._createRestResponse(reader)!,
           );
         }
       },
@@ -361,7 +361,7 @@ export default class RestRequest<TAssertShape = any> {
       reader.status,
       reader.headers,
       reader.textFetched,
-      reader.textIsPartial
+      reader.textIsPartial,
     );
   }
 
@@ -405,7 +405,7 @@ export default class RestRequest<TAssertShape = any> {
             inspectPossibleJSON(
               event.res.headers,
               event.res.text,
-              MAX_DEBUG_LEN
+              MAX_DEBUG_LEN,
             );
         }
       } else if (event.exception) {
@@ -430,7 +430,7 @@ export default class RestRequest<TAssertShape = any> {
 async function runMiddlewares(
   req: RestRequest,
   middlewares: RestOptions["middlewares"],
-  last: (req: RestRequest) => Promise<RestResponse>
+  last: (req: RestRequest) => Promise<RestResponse>,
 ): Promise<RestResponse> {
   if (middlewares.length > 0) {
     const [head, ...tail] = middlewares;

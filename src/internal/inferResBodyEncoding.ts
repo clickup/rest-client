@@ -17,17 +17,17 @@ export default function inferResBodyEncoding(res: Response): BufferEncoding {
     ? // It's a binary Content-Type.
       "binary"
     : charset && !BUFFER_ENCODINGS.includes(charset)
-    ? // The charset is provided in Content-Type, but unknown by Buffer.
-      "binary"
-    : charset && BUFFER_ENCODINGS.includes(charset)
-    ? // Charset is provided in Content-Type header, and Buffer knows
-      // how to decode it.
-      (charset as BufferEncoding)
-    : // An opinionated choice is made here to always default-decode the
-      // response stream as UTF-8. This is because JSON is by definition a UTF-8
-      // stream, and people often time respond with JSONs forgetting to provide
-      // "; charset=utf-8" part of the Content-Type header (or they forget
-      // Content-Type header at all, or put some wrong value as "text/plain"
-      // there; there is an endless list of mistake variations here).
-      "utf-8";
+      ? // The charset is provided in Content-Type, but unknown by Buffer.
+        "binary"
+      : charset && BUFFER_ENCODINGS.includes(charset)
+        ? // Charset is provided in Content-Type header, and Buffer knows
+          // how to decode it.
+          (charset as BufferEncoding)
+        : // An opinionated choice is made here to always default-decode the
+          // response stream as UTF-8. This is because JSON is by definition a UTF-8
+          // stream, and people often time respond with JSONs forgetting to provide
+          // "; charset=utf-8" part of the Content-Type header (or they forget
+          // Content-Type header at all, or put some wrong value as "text/plain"
+          // there; there is an endless list of mistake variations here).
+          "utf-8";
 }

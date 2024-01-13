@@ -5,7 +5,7 @@ import truncate from "lodash/truncate";
 export default function inspectPossibleJSON(
   headers: { get(name: string): string | null },
   text: string | Buffer | NodeJS.ReadableStream,
-  maxOutputLen: number
+  maxOutputLen: number,
 ): string {
   const MAX_LEN_TO_TRY_PARSE = 1024 * 1024;
 
@@ -31,13 +31,13 @@ export default function inspectPossibleJSON(
         // man's approach: of course not all APIs return error/errors fields at
         // all, but it's hard to reorder at any other layer of abstraction.
         reorderObjectProps(json, (k) =>
-          k === "error" || k === "errors" ? "" : k
+          k === "error" || k === "errors" ? "" : k,
         );
       }
 
       return ellipsis(
         inspect(json, { depth: 20, compact: true }),
-        maxOutputLen
+        maxOutputLen,
       );
     } catch (e: any) {
       return ellipsis(text, maxOutputLen);
@@ -53,7 +53,7 @@ export default function inspectPossibleJSON(
  */
 function reorderObjectProps(
   obj: Record<string, any>,
-  ranker: (k: string, v: any) => string | number
+  ranker: (k: string, v: any) => string | number,
 ) {
   const entries = Object.entries(obj);
   for (const k in obj) {
@@ -62,7 +62,7 @@ function reorderObjectProps(
 
   Object.assign(
     obj,
-    Object.fromEntries(sortBy(entries, ([k, v]) => ranker(k, v)))
+    Object.fromEntries(sortBy(entries, ([k, v]) => ranker(k, v))),
   );
 }
 

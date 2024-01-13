@@ -14,13 +14,17 @@
 
 ### constructor
 
-• **new RestError**(`message`)
+• **new RestError**(`message`): [`RestError`](RestError.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `message` | `string` |
+
+#### Returns
+
+[`RestError`](RestError.md)
 
 #### Overrides
 

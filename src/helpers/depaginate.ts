@@ -8,8 +8,8 @@
  */
 export default async function* depaginate<TItem, TCursor = string>(
   readFunc: (
-    cursor: TCursor | undefined
-  ) => Promise<readonly [TItem[], TCursor | null | undefined]>
+    cursor: TCursor | undefined,
+  ) => Promise<readonly [TItem[], TCursor | null | undefined]>,
 ): AsyncGenerator<TItem, void, undefined> {
   let prevCursor: TCursor | null | undefined = undefined;
   let cursor: TCursor | null | undefined = undefined;
@@ -28,7 +28,7 @@ export default async function* depaginate<TItem, TCursor = string>(
           JSON.stringify(prevCursor) +
           ", cursor=" +
           JSON.stringify(cursor) +
-          " (they must differ)"
+          " (they must differ)",
       );
     }
 

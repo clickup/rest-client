@@ -34,7 +34,7 @@ export default class RestFetchReader {
   constructor(
     private _url: string,
     private _reqInit: RequestInit,
-    private _options: RestFetchReaderOptions
+    private _options: RestFetchReaderOptions,
   ) {}
 
   /**
@@ -151,7 +151,7 @@ export default class RestFetchReader {
         new Request(this._url, {
           ...this._reqInit,
           signal: controller.signal as any,
-        })
+        }),
       );
       this._status = res.status;
       this._headers = res.headers;
