@@ -67,7 +67,7 @@ ___
 
 ### paceRequests
 
-▸ **paceRequests**(`pacer`): [`Middleware`](interfaces/Middleware.md)
+▸ **paceRequests**(`pacer`, `delayMetric?`): [`Middleware`](interfaces/Middleware.md)
 
 Rest Client middleware that adds some delay between requests using one of
 Pacer implementations.
@@ -77,6 +77,7 @@ Pacer implementations.
 | Name | Type |
 | :------ | :------ |
 | `pacer` | ``null`` \| [`Pacer`](interfaces/Pacer.md) \| (`req`: [`RestRequest`](classes/RestRequest.md)\<`any`\>) => `Promise`\<``null`` \| [`Pacer`](interfaces/Pacer.md)\> |
+| `delayMetric?` | (`delay`: `number`) => `void` |
 
 #### Returns
 

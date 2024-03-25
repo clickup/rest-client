@@ -10,6 +10,7 @@ const MIN_LOG_DELAY_MS = 10;
  */
 export default function paceRequests(
   pacer: Pacer | ((req: RestRequest) => Promise<Pacer | null>) | null,
+  delayMetric?: (delay: number) => void,
 ): Middleware {
   return async (req, next) => {
     if (typeof pacer === "function") {
@@ -18,7 +19,9 @@ export default function paceRequests(
 
     if (pacer) {
       const { delayMs, reason } = await pacer.touch();
+
       if (delayMs > 0) {
+        delayMetric?.(delayMs);
         await req.options.heartbeater.delay(delayMs);
       }
 
