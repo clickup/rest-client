@@ -15,8 +15,6 @@
 - [RestRetriableError](classes/RestRetriableError.md)
 - [RestTimeoutError](classes/RestTimeoutError.md)
 - [RestTokenInvalidError](classes/RestTokenInvalidError.md)
-- [PacerComposite](classes/PacerComposite.md)
-- [PacerQPS](classes/PacerQPS.md)
 
 ## Interfaces
 
@@ -24,10 +22,8 @@
 - [RestLogEvent](interfaces/RestLogEvent.md)
 - [Middleware](interfaces/Middleware.md)
 - [RestOptions](interfaces/RestOptions.md)
-- [PacerDelay](interfaces/PacerDelay.md)
 - [Pacer](interfaces/Pacer.md)
-- [PacerQPSBackend](interfaces/PacerQPSBackend.md)
-- [PacerQPSOptions](interfaces/PacerQPSOptions.md)
+- [PacerOutcome](interfaces/PacerOutcome.md)
 
 ## Functions
 
@@ -77,7 +73,7 @@ Pacer implementations.
 | Name | Type |
 | :------ | :------ |
 | `pacer` | ``null`` \| [`Pacer`](interfaces/Pacer.md) \| (`req`: [`RestRequest`](classes/RestRequest.md)\<`any`\>) => `Promise`\<``null`` \| [`Pacer`](interfaces/Pacer.md)\> |
-| `delayMetric?` | (`delay`: `number`) => `void` |
+| `delayMetric?` | (`delay`: `number`, `reason`: `string`) => `void` |
 
 #### Returns
 
@@ -85,4 +81,4 @@ Pacer implementations.
 
 #### Defined in
 
-[src/middlewares/paceRequests.ts:11](https://github.com/clickup/rest-client/blob/master/src/middlewares/paceRequests.ts#L11)
+[src/middlewares/paceRequests.ts:33](https://github.com/clickup/rest-client/blob/master/src/middlewares/paceRequests.ts#L33)

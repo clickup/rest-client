@@ -347,6 +347,7 @@ export default class RestRequest<TAssertShape = any> {
           );
         }
       },
+      responseEncoding: this.options.responseEncoding,
     });
   }
 

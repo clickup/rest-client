@@ -96,6 +96,8 @@ export default interface RestOptions {
   /** If true, non-public IP addresses are allowed too; otherwise, only unicast
    * addresses are allowed. */
   allowInternalIPs: boolean;
+  /** Overrides the default encoding heuristics for responses. */
+  responseEncoding: NodeJS.BufferEncoding | undefined;
   /** If true, logs request-response pairs to console. */
   isDebug: boolean;
   /** @ignore Holds HttpsAgent/HttpAgent instances; used internally only. */
@@ -172,6 +174,7 @@ export const DEFAULT_OPTIONS: RestOptions = {
   throwIfResIsBigger: undefined,
   privateDataInResponse: false,
   allowInternalIPs: false,
+  responseEncoding: undefined,
   isDebug: false,
   agents: new Agents(),
   keepAlive: { timeoutMs: 10000 },

@@ -480,8 +480,8 @@ function simpleShape(path: string, args?: any) {
     args && typeof args === "object"
       ? Object.keys(args)
           // Filter out args that are already mentioned in the path, e.g.
-          // /pages/:pageID/blocks.
-          .filter((arg) => !argsInPath.includes(arg))
+          // /pages/:pageID/blocks. Also filter out undefined args.
+          .filter((arg) => !argsInPath.includes(arg) && args[arg] !== undefined)
           .sort()
           .join(",")
       : "";

@@ -7,10 +7,7 @@ import RestRetriableError from "./errors/RestRetriableError";
 import RestTimeoutError from "./errors/RestTimeoutError";
 import RestTokenInvalidError from "./errors/RestTokenInvalidError";
 import depaginate from "./helpers/depaginate";
-import paceRequests from "./middlewares/paceRequests";
-import Pacer from "./pacers/Pacer";
-import PacerComposite from "./pacers/PacerComposite";
-import PacerQPS, { PacerQPSBackend } from "./pacers/PacerQPS";
+import paceRequests, { Pacer, PacerOutcome } from "./middlewares/paceRequests";
 import RestClient, { TokenGetter } from "./RestClient";
 import RestOptions, {
   RestLogEvent,
@@ -29,10 +26,8 @@ export {
   Headers,
   Middleware,
   Pacer,
-  PacerComposite,
   paceRequests,
-  PacerQPS,
-  PacerQPSBackend,
+  PacerOutcome,
   RestClient,
   RestContentSizeOverLimitError,
   RestError,

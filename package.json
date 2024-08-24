@@ -1,7 +1,7 @@
 {
   "name": "@clickup/rest-client",
   "description": "A syntax sugar tool around Node fetch() API, tailored to work with TypeScript and response validators",
-  "version": "2.10.296",
+  "version": "2.11.0",
   "license": "MIT",
   "keywords": [
     "rest-client",
@@ -51,6 +51,7 @@
     "eslint-import-resolver-typescript": "^3.5.5",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-lodash": "^7.4.0",
+    "eslint-plugin-no-only-tests": "^3.1.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react": "^7.32.2",

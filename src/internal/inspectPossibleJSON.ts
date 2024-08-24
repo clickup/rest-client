@@ -1,6 +1,6 @@
 import { inspect } from "util";
 import sortBy from "lodash/sortBy";
-import truncate from "lodash/truncate";
+import ellipsis from "./ellipsis";
 
 export default function inspectPossibleJSON(
   headers: { get(name: string): string | null },
@@ -64,8 +64,4 @@ function reorderObjectProps(
     obj,
     Object.fromEntries(sortBy(entries, ([k, v]) => ranker(k, v))),
   );
-}
-
-function ellipsis(text: any, length: number) {
-  return truncate("" + text, { length }).trimEnd();
 }

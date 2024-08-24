@@ -126,6 +126,18 @@ addresses are allowed.
 
 ___
 
+### responseEncoding
+
+• **responseEncoding**: `undefined` \| `BufferEncoding`
+
+Overrides the default encoding heuristics for responses.
+
+#### Defined in
+
+[src/RestOptions.ts:100](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L100)
+
+___
+
 ### isDebug
 
 • **isDebug**: `boolean`
@@ -134,7 +146,7 @@ If true, logs request-response pairs to console.
 
 #### Defined in
 
-[src/RestOptions.ts:100](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L100)
+[src/RestOptions.ts:102](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L102)
 
 ___
 
@@ -153,7 +165,7 @@ Sets Keep-Alive parameters (persistent connections).
 
 #### Defined in
 
-[src/RestOptions.ts:104](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L104)
+[src/RestOptions.ts:106](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L106)
 
 ___
 
@@ -165,7 +177,7 @@ When resolving DNS, use IPv4, IPv6 or both (see dns.lookup() docs).
 
 #### Defined in
 
-[src/RestOptions.ts:112](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L112)
+[src/RestOptions.ts:114](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L114)
 
 ___
 
@@ -177,7 +189,7 @@ Max timeout to wait for a response.
 
 #### Defined in
 
-[src/RestOptions.ts:114](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L114)
+[src/RestOptions.ts:116](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L116)
 
 ___
 
@@ -204,7 +216,7 @@ delay events logging.
 
 #### Defined in
 
-[src/RestOptions.ts:117](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L117)
+[src/RestOptions.ts:119](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L119)
 
 ___
 
@@ -216,7 +228,7 @@ Middlewares to wrap requests. May alter both request and response.
 
 #### Defined in
 
-[src/RestOptions.ts:119](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L119)
+[src/RestOptions.ts:121](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L121)
 
 ___
 
@@ -253,7 +265,7 @@ remote API is that weird. Return values:
 
 #### Defined in
 
-[src/RestOptions.ts:132](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L132)
+[src/RestOptions.ts:134](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L134)
 
 ___
 
@@ -287,7 +299,7 @@ contradictory information; then isRateLimitError wins.
 
 #### Defined in
 
-[src/RestOptions.ts:142](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L142)
+[src/RestOptions.ts:144](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L144)
 
 ___
 
@@ -314,7 +326,7 @@ not, the response ought to be either success or some other error.
 
 #### Defined in
 
-[src/RestOptions.ts:147](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L147)
+[src/RestOptions.ts:149](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L149)
 
 ___
 
@@ -347,4 +359,4 @@ retry will happen in not less than this number of milliseconds.
 
 #### Defined in
 
-[src/RestOptions.ts:155](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L155)
+[src/RestOptions.ts:157](https://github.com/clickup/rest-client/blob/master/src/RestOptions.ts#L157)

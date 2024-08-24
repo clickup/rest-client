@@ -10,6 +10,7 @@ export interface RestFetchReaderOptions {
   heartbeat?: () => Promise<void>;
   onTimeout?: (reader: RestFetchReader, e: any) => void;
   onAfterRead?: (reader: RestFetchReader) => void;
+  responseEncoding?: NodeJS.BufferEncoding;
 }
 
 /**
@@ -160,7 +161,9 @@ export default class RestFetchReader {
       // how Node streams and setEncoding() handle decoding when the returned
       // chunks cross the boundaries of multi-byte characters (TL;DR: it works
       // fine, that's why we work with string and not Buffer here).
-      res.body.setEncoding(inferResBodyEncoding(res));
+      res.body.setEncoding(
+        this._options.responseEncoding ?? inferResBodyEncoding(res),
+      );
 
       await this._options.heartbeat?.();
       for await (const chunk of res.body) {

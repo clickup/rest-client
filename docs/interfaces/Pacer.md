@@ -5,36 +5,31 @@
 Pacer is a class which allows to pace requests on some resource identified by
 the instance of this class.
 
-## Implemented by
-
-- [`PacerComposite`](../classes/PacerComposite.md)
-- [`PacerQPS`](../classes/PacerQPS.md)
-
 ## Properties
 
-### name
+### key
 
-• `Readonly` **name**: `string`
+• `Readonly` **key**: `string`
 
 Human readable name of the pacer, used when composing multiple pacers.
 
 #### Defined in
 
-[src/pacers/Pacer.ts:15](https://github.com/clickup/rest-client/blob/master/src/pacers/Pacer.ts#L15)
+[src/middlewares/paceRequests.ts:12](https://github.com/clickup/rest-client/blob/master/src/middlewares/paceRequests.ts#L12)
 
 ## Methods
 
-### touch
+### pace
 
-▸ **touch**(): `Promise`\<[`PacerDelay`](PacerDelay.md)\>
+▸ **pace**(): `Promise`\<[`PacerOutcome`](PacerOutcome.md)\>
 
 Signals that we're about to send a request. Returns the delay we need to
 wait for before actually sending.
 
 #### Returns
 
-`Promise`\<[`PacerDelay`](PacerDelay.md)\>
+`Promise`\<[`PacerOutcome`](PacerOutcome.md)\>
 
 #### Defined in
 
-[src/pacers/Pacer.ts:21](https://github.com/clickup/rest-client/blob/master/src/pacers/Pacer.ts#L21)
+[src/middlewares/paceRequests.ts:18](https://github.com/clickup/rest-client/blob/master/src/middlewares/paceRequests.ts#L18)

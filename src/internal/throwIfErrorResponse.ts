@@ -36,7 +36,7 @@ export default function throwIfErrorResponse(
         const retryAfterHeader = res.headers.get("Retry-After") || "0";
         throw new RestRateLimitError(
           `Rate limited by HTTP status ${STATUS_TOO_MANY_REQUESTS}`,
-          parseInt(retryAfterHeader) || 0,
+          1000 * parseInt(retryAfterHeader) || 0,
           res,
         );
       }
